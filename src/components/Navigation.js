@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import HyperLink from "../elements/HyperLink";
-import Button from "../elements/Button";
 import Btn from "../elements/Btn";
 import Image from "../elements/Image";
 
@@ -19,23 +18,14 @@ export default function Navigation() {
           <div>개팔자 상팔자</div>
         </Link>
         <BtnWrap>
-          <Button
-            text="로그인"
-            _onClick={() => {
-              console.log("로그인 확인!");
-            }}
-            height="100px"
-            width="200px"
-            bgc="#fff"
-            border="1px solid #fff"
-          ></Button>
+          <Btn large outline>
+            로그인
+          </Btn>
           <Btn large outline>
             회원가입
           </Btn>
         </BtnWrap>
       </Header>
-
-      <Image />
     </NavBar>
   );
 }
