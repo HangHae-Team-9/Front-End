@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Navigation() {
   return (
     <Wrap>
-      <Header>1234</Header>
+      <Header>54544123</Header>
     </Wrap>
   );
 }
