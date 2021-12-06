@@ -7,11 +7,6 @@ import Image from "../elements/Image";
 
 export default function Navigation() {
   return (
-<<<<<<< HEAD
-    <Wrap>
-      <Header>54544123</Header>
-    </Wrap>
-=======
     <NavBar>
       <Header>
         <Link to="/" style={{ display: "flex" }}>
@@ -32,7 +27,6 @@ export default function Navigation() {
         </BtnWrap>
       </Header>
     </NavBar>
->>>>>>> 307b4ce8b252458d7efe9812e634dd165b85137a
   );
 }
 
