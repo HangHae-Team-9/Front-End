@@ -28,7 +28,7 @@ const registerDB = (username, pw, pw_chk, email) => {
   return function (dispatch, getState, { history }) {
     apis.signup(username, pw, pw_chk, email);
     window.alert("회원가입을 축하합니다. 로그인페이지로 이동합니다.");
-    history.push("/");
+    history.push("/pages/LogIn");
   };
 };
 
@@ -40,6 +40,7 @@ const setLoginDB = (username, password) => {
         setCookie("token", res.data[1].token, 7);
         localStorage.setItem("username", res.data[0].username);
         dispatch(setLogin({ username: username }));
+        window.alert("로그인성공");
         history.replace("/");
       })
       .catch((err) => {
@@ -50,9 +51,12 @@ const setLoginDB = (username, password) => {
 
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
+    console.log("3");
     deleteCookie("token");
     localStorage.removeItem("username");
+    console.log("1");
     dispatch(logOut());
+    console.log("2");
     history.replace("/login");
   };
 };

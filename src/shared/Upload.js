@@ -6,6 +6,7 @@ const Upload = (props) => {
   return (
     <>
       <UpInput
+        type={type}
         onChange={_onChange}
         margin={margin}
         width={width}

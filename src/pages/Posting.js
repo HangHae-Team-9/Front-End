@@ -30,6 +30,7 @@ const Posting = (props) => {
           <Scontain>
             <Upload
               type="file"
+              margin="15px 0px"
               _onChange={(e) => {
                 encodeFileToBase64(e.target.files[0]);
               }}

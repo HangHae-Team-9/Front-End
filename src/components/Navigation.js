@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Btn from "../elements/Btn";
 import WebFont from "webfontloader";
+import { useDispatch, useSelector } from "react-redux";
+import { userCreators } from "../modules/users";
 
 WebFont.load({
   google: {
@@ -13,17 +15,53 @@ WebFont.load({
 
 export default function Navigation() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  console.log(document.cookie);
+  // const is_login = document.cookie;
 
+  const isLogin = useSelector((store) => store.users.is_login);
+  // const username = useSelector((store) => store.users.user.username);
+  // console.log(username);
+  // console.log(isLogin);
+
+  const signOut = () => {
+    console.log("logout");
+    dispatch(userCreators.logOutDB());
+  };
+
+  const toPosting = () => {
+    history.push("/pages/Posting");
+  };
+  if (isLogin) {
+    return (
+      <NavBar>
+        <Header>
+          <div style={{ margin: "auto" }}>
+            <Link to="/" style={{ display: "flex" }}>
+              <img
+                src="https://svgsilh.com/svg/1517090.svg"
+                alt="logoImg"
+                style={{ width: "100px" }}
+              />
+              <NavTitle>개팔자가 상팔자</NavTitle>
+            </Link>
+          </div>
+          <LinkWrap>
+            <HyperLink>님 환영합니다.</HyperLink>
+            <HyperLink>MyPage</HyperLink>
+            <HyperLink onClick={signOut}>SignOut</HyperLink>
+          </LinkWrap>
+          <GoPosting onClick={toPosting}>Go Posting</GoPosting>
+        </Header>
+      </NavBar>
+    );
+  }
   const toLogin = () => {
     history.push("/pages/LogIn");
   };
 
   const toSignUp = () => {
     history.push("/pages/SignUp");
-  };
-
-  const toPosting = () => {
-    history.push("/pages/Posting");
   };
 
   return (
