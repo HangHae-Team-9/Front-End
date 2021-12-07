@@ -13,7 +13,7 @@ import { connectRouter } from "connected-react-router";
 
 const history = createBrowserHistory();
 const rootReducer = combineReducers({
-  // postView: postView,
+  postView,
   router: connectRouter(history),
 });
 const middleware = [thunk.withExtraArgument({ history }), logger];

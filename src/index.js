@@ -9,9 +9,11 @@ import store, { history } from "./modules/configStore";
 import { ConnectedRouter } from "connected-react-router";
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ConnectedRouter history={history}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );
