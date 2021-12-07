@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import MainPage from "./pages/MainPage";
+import Posting from "./pages/Posting";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <GlobalStyles />
       <Nav />
       <Switch>
+        <Route path="/pages/Posting" component={Posting} />
         <Route path="/pages/SignUp" component={SignUp} />
         <Route path="/pages/Login" component={LogIn} />
         <Route path="/" exact component={MainPage} />

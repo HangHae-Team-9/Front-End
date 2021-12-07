@@ -26,12 +26,12 @@ const Image = (props) => {
 
 Image.defaultProps = {
   shape: "circle",
-  src: "https://svgsilh.com/svg/1517090.svg",
+  src: "",
   size: 36,
 };
 
 const AspectOutter = styled.div`
-  width: 100%;
+  width: ${(props) => props.width};
   min-width: 250px;
 `;
 

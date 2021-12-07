@@ -11,7 +11,7 @@ const Button = ({ children, ...rest }) => {
 };
 
 Button.defaultProps = {
-  width: "120px;",
+  width: "100%",
   height: "40px;",
   backgroundColor: "#fff",
   color: "#000",
@@ -84,6 +84,6 @@ const BtnBx = styled.button`
   font-weight: 700;
   font-size: 14px;
   background-color: ${(props) => props.bg};
-  margin: auto;
+  margin: ${(props) => props.margin};
 `;
 export default Button;
