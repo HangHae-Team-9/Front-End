@@ -6,8 +6,8 @@ import { Grid } from "./";
 export default function Input() {
   return (
     <>
-      {label}
-      <input placeholder={placeholder} onChange={_onChagne} />
+      {/* {label} */}
+      {/* <input placeholder={placeholder} onChange={_onChagne} /> */}
     </>
   );
 }

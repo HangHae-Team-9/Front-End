@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import HyperLink from "../elements/HyperLink";
+import { Link, useHistory } from "react-router-dom";
 import Btn from "../elements/Btn";
-import Image from "../elements/Image";
 
 export default function Navigation() {
+  const history = useHistory();
+
+  const toLogin = () => {
+    history.push("/pages/LogIn");
+  };
+
+  const toSignUp = () => {
+    history.push("/pages/SignUp");
+  };
+
   return (
     <NavBar>
       <Header>
@@ -15,16 +23,12 @@ export default function Navigation() {
             alt="logoImg"
             style={{ width: "100px" }}
           />
-          <div>개팔자 상팔자</div>
+          <NavTitle>개팔자 상팔자</NavTitle>
         </Link>
-        <BtnWrap>
-          <Btn large outline>
-            로그인
-          </Btn>
-          <Btn large outline>
-            회원가입
-          </Btn>
-        </BtnWrap>
+        <LinkWrap>
+          <HyperLink onClick={toLogin}>로그인</HyperLink>
+          <HyperLink onClick={toSignUp}>회원가입</HyperLink>
+        </LinkWrap>
       </Header>
     </NavBar>
   );
@@ -39,6 +43,7 @@ const NavBar = styled.div`
   width: 100%;
   height: 100px;
   background-color: orange;
+  z-index: 999;
 `;
 
 const Header = styled.div`
@@ -48,14 +53,45 @@ const Header = styled.div`
   margin: auto;
   height: 100%;
   display: flex;
-  font-size: 50px;
-  line-height: 2;
+
   color: #999;
   position: relative;
 `;
 
-const BtnWrap = styled.div`
+const NavTitle = styled.div`
+  font-size: 50px;
+  line-height: 2;
+`;
+
+const LinkWrap = styled.div`
   position: absolute;
   right: 0;
   height: 30px;
+  display: flex;
+`;
+
+const HyperLink = styled.div`
+  margin: 10px;
+  position: reletive;
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    color: #eee;
+  }
+
+  &:after {
+    content: "";
+    border-left: 1px solid #fff;
+    position: absolute;
+    top: 3px;
+    bottom: 0;
+    margin: auto 10px;
+    height: 12px;
+  }
+
+  &:last-child:after {
+    content: "";
+    border: none;
+  }
 `;

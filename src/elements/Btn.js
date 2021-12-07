@@ -15,6 +15,7 @@ Button.defaultProps = {
   height: "40px;",
   backgroundColor: "#fff",
   color: "#000",
+  margin: "auto",
 };
 
 const BtnBx = styled.button`
@@ -83,5 +84,6 @@ const BtnBx = styled.button`
   font-weight: 700;
   font-size: 14px;
   background-color: ${(props) => props.bg};
+  margin: auto;
 `;
 export default Button;
