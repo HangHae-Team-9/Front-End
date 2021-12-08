@@ -45,20 +45,7 @@ const LogIn = (props) => {
           _onChange={changePassword}
         />
 
-        <Btn
-          margin="auto"
-          // _onClick={() => {
-          //   axios
-          //     .get("http://15.165.160.58/")
-          //     .then((result) => {
-          //       console.log(result);
-          //     })
-          //     .catch(() => {
-          //       console.log("실패쓰!");
-          //     });
-          // }}
-          _onClick={login}
-        >
+        <Btn margin="auto" _onClick={login}>
           로그인
         </Btn>
       </Test>

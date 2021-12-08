@@ -31,20 +31,23 @@ const Input = (props) => {
   );
 };
 
-Input.defaultProps = {
-  multiline: false,
-  placeholder: "텍스트를 입력해주세요.",
-  _onChagne: () => {},
-  margin: "0px",
-  width: "100%",
-};
-
 // const Eltextarea = styled.textarea`
 //   border: 1px solid #87cefa;
 //   width: 100%;
 //   padding: 12px 4px;
 //   box-sizing: border-box;
 // `;
+
+Input.defaultProps = {
+  width: "100%",
+  label: false,
+  placeholder: false,
+  _onChange: false,
+  type: false,
+  margin: false,
+  height: false,
+  type: "text",
+};
 
 const ElInput = styled.input`
   border: 1px solid #87cefa;

@@ -5,6 +5,7 @@ import Btn from "../elements/Btn";
 import Input from "../elements/Input";
 import Text from "../elements/Text";
 import { userCreators } from "../modules/users";
+import { usernameCheck, passwordCheck, emailCheck } from "../shared/regExp";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
@@ -27,6 +28,31 @@ const SignUp = (props) => {
   }
 
   function register() {
+    if (username === "" || pw === "" || pw_chk === "" || email === "") {
+      window.alert("빈 칸이 없도록 모두 입력해주세요");
+      return;
+    }
+
+    if (pw !== pw_chk) {
+      window.alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    if (!usernameCheck(username)) {
+      window.alert(
+        "아이디는 영문 대,소문자 또는 숫자가 1개 이상씩 포함된 3자이상이어야 합니다."
+      );
+      return;
+    }
+    if (!passwordCheck(pw)) {
+      window.alert("비밀번호는 4자이상의 비밀번호여야 합니다.");
+      return;
+    }
+    if (!emailCheck(email)) {
+      window.alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
+
     console.log(username, pw, pw_chk, email);
     dispatch(userCreators.registerDB(username, pw, pw_chk, email));
   }
@@ -49,6 +75,7 @@ const SignUp = (props) => {
         placeholder="패스워드를 입력해주세요"
         margin="10px 0px"
         _onChange={changePw}
+        type="password"
       />
 
       <Text size="12px" bold>
@@ -58,6 +85,7 @@ const SignUp = (props) => {
         placeholder="패스워드를 다시 입력해주세요"
         margin="10px 0px"
         _onChange={changePw_chk}
+        type="password"
       />
 
       <Text size="12px" bold>

@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
-  const { _onChange, width } = props;
+  const { _onClick, width } = props;
   return (
     <React.Fragment>
       <Entire_DD>
         <Dt>
           <label for="카테고리 선택">카테고리 선택 </label>
         </Dt>
-        <Dd onChange={_onChange}>강아지 용품</Dd>
-        <Dd onChange={_onChange}>고양이 용품</Dd>
+        <Dd onClick={_onClick}>강아지 용품</Dd>
+        <Dd onClick={_onClick}>고양이 용품</Dd>
       </Entire_DD>
     </React.Fragment>
   );

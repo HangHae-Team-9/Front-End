@@ -10,20 +10,16 @@ const loadPostView = createAction(LOAD, (postView) => ({ postView }));
 
 // initialState
 const initialState = {
-  list: [
-    {
-      username: "유저이름",
-      img: "src",
-      title: "title",
-    },
-  ],
+  list: [],
+  postView: null,
 };
 
 // Thunk function
 export const _loadPostView =
   () =>
-  (dispatch, getState, { history }) => {
-    const data = apis.test();
+  async (dispatch, getState, { history }) => {
+    console.log("loadtest");
+    const { data } = await apis.getPostCard();
     console.log(data);
     dispatch(loadPostView(data));
   };

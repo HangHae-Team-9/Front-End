@@ -37,7 +37,10 @@ const setLoginDB = (username, password) => {
     apis
       .login(username, password)
       .then((res) => {
+        console.log(username);
+        console.log(document.cookie);
         setCookie("token", res.data[1].token, 7);
+        console.log(document.cookie);
         localStorage.setItem("username", res.data[0].username);
         dispatch(setLogin({ username: username }));
         window.alert("로그인성공");
@@ -108,12 +111,10 @@ export default handleActions(
   initialState
 );
 
-const userCreators = {
+export const userCreators = {
   setLoginDB,
   registerDB,
   logOutDB,
   loginCheckDB,
   userInfoDB,
 };
-
-export { userCreators };
