@@ -20,8 +20,8 @@ export default function Navigation() {
   // const is_login = document.cookie;
 
   const isLogin = useSelector((store) => store.users.is_login);
-  // const username = useSelector((store) => store.users.user.username);
-  // console.log(username);
+  const username = useSelector((store) => store.users.user);
+  console.log(username);
   // console.log(isLogin);
 
   const signOut = () => {
@@ -47,7 +47,7 @@ export default function Navigation() {
             </Link>
           </div>
           <LinkWrap>
-            <HyperLink>님 환영합니다.</HyperLink>
+            <HyperLink>{username.username} 님 환영합니다.</HyperLink>
             <HyperLink>MyPage</HyperLink>
             <HyperLink onClick={signOut}>SignOut</HyperLink>
           </LinkWrap>
