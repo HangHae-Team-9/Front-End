@@ -12,6 +12,12 @@ const initialState = {
   list: [
     {
       username: 123,
+      comments: [
+        {
+          username: "khr",
+          commentcontent: "asdasd",
+        },
+      ],
     },
   ],
 };

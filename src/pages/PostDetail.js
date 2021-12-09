@@ -1,26 +1,30 @@
 import React from "react";
+// import styled from "styled-components";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
 import { _loadDetailView } from "../modules/detailView";
 import { useDispatch, useSelector } from "react-redux";
+import DetailView from "../components/DetailView";
 
 const PostDetail = (props) => {
   const id = props.match.params.id;
-  console.log(typeof id);
   const dispatch = useDispatch();
+  // delay(1000)
 
   React.useEffect(() => {
     dispatch(_loadDetailView(id));
-  }, []);
+  }, [dispatch, id]);
 
-  const data = useSelector((state) => state.detailView);
-  console.log(data);
+  const data = useSelector((a) => a.detailView.list);
+  const comments = data.comments;
+  console.log(comments);
 
   return (
-    <React.Fragment>
+    <>
+      <DetailView detailView={data} />
       <CommentWrite id={id} />
-      <CommentList />
-    </React.Fragment>
+      <CommentList comments={comments} />
+    </>
   );
 };
 

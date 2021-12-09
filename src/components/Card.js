@@ -11,10 +11,13 @@ export default function Card() {
   const history = useHistory();
 
   React.useEffect(() => {
-    dispatch(_loadPostView()).then(console.log("로드완료"));
-  }, []);
+    dispatch(_loadPostView());
+  }, [dispatch]);
 
   const postList = useSelector((store) => store.postView.list);
+
+  // const data = useSelector((state) => state.detailView.list);
+  // const comments = data.comments;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Post from "../components/Post";
 
 export default function Posting() {

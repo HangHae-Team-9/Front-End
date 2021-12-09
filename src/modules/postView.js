@@ -9,43 +9,7 @@ const loadPostView = createAction(LOAD, (postView) => ({ postView }));
 
 // initialState
 const initialState = {
-  list: [
-    // {
-    //   username: "상필이",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-    // {
-    //   username: "상필이2",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-    // {
-    //   username: "상필이3",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-    // {
-    //   username: "상필이4",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-    // {
-    //   username: "상필이4",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-    // {
-    //   username: "상필이4",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-    // {
-    //   username: "상필이4",
-    //   title: "상필이제목",
-    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
-    // },
-  ],
+  list: [],
   postView: null,
 };
 

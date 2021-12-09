@@ -14,7 +14,7 @@ Button.defaultProps = {
   width: "100%",
   height: "40px;",
   backgroundColor: "#111",
-  color: "#fff",
+  color: "#ff",
   margin: "auto",
   fontSize: "30px;",
 };
@@ -74,7 +74,7 @@ const BtnBx = styled.button`
   border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 20px;
+  font-size: ${(props) => props.fs};
   background-color: ${(props) => props.bg};
   margin: ${(props) => props.margin};
 `;

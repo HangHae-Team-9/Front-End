@@ -9,19 +9,16 @@ import { addCommentDB } from "../modules/comment";
 
 const CommentWrite = (props) => {
   const id = props.id;
-  console.log(id);
 
   const dispatch = useDispatch();
   const [commentcontent, setCommentcontent] = useState("");
 
   const username = localStorage.getItem("username");
-  const data = useSelector((state) => state);
 
   const changeCommentcontent = (e) => {
     setCommentcontent(e.target.value);
   };
 
-  console.log(id, username, commentcontent);
   const addComment = () => {
     dispatch(addCommentDB(id, username, commentcontent));
     // setCommentcontent("");

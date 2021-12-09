@@ -2,13 +2,23 @@ import React from "react";
 import Text from "../elements/Text";
 import styled from "styled-components";
 
-const CommentList = () => {
+const CommentList = (props) => {
+  const comments = props.comments;
+  console.log(comments);
   return (
     <React.Fragment>
       <Test>
-        <CommentItem />
-        <CommentItem />
-        <CommentItem />
+        {comments &&
+          comments.map((comment, key) => {
+            const username = comment.username;
+            const content = comment.commentcontent;
+            return (
+              <React.Fragment key={key}>
+                <div>댓글작성자: {username}</div>
+                <div>댓글내용 : {content}</div>
+              </React.Fragment>
+            );
+          })}
       </Test>
     </React.Fragment>
   );

@@ -57,7 +57,7 @@ const SignUp = (props) => {
 
   return (
     <Test>
-      <Text size="12px" bold>
+      <Text size="14px" bold>
         아이디
       </Text>
       <Input
@@ -65,8 +65,12 @@ const SignUp = (props) => {
         margin="10px 0px"
         _onChange={changeUsername}
       />
+      <Btn width="80px" fs="11px">
+        {" "}
+        중복확인{" "}
+      </Btn>
 
-      <Text size="12px" bold>
+      <Text size="14px" bold>
         비밀번호
       </Text>
       <Input
@@ -76,7 +80,7 @@ const SignUp = (props) => {
         type="password"
       />
 
-      <Text size="12px" bold>
+      <Text size="14px" bold>
         비밀번호확인
       </Text>
       <Input
@@ -86,27 +90,39 @@ const SignUp = (props) => {
         type="password"
       />
 
-      <Text size="12px" bold>
+      <Text size="14px" bold>
         이메일
       </Text>
-      <Input
-        placeholder="닉네임을 입력해주세요"
-        margin="10px 0px"
-        _onChange={changeEmail}
-      />
+      <Container>
+        <Input
+          width="70%"
+          placeholder="닉네임을 입력해주세요"
+          margin="10px 0px"
+          _onChange={changeEmail}
+        />
+        <Btn width="80px" fs="11px">
+          중복확인
+        </Btn>
+      </Container>
       <Btn _onClick={register}>회원가입</Btn>
     </Test>
   );
 };
 
 const Test = styled.div`
-  width: 300px;
+  width: 400px;
   background-color: White;
   margin: 150px auto;
   position: relative;
   border: 3px solid black;
   padding: 20px 30px;
   border-radius: 10px;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export default SignUp;
