@@ -20,31 +20,38 @@ const CommentWrite = (props) => {
   };
 
   const addComment = () => {
+    if (!isLogin) {
+      window.alert("로그인 후 이용해 주시기 바랍니다");
+      return;
+    }
     dispatch(addCommentDB(id, username, commentcontent));
-    // setCommentcontent("");
-    // document.location.reload();
   };
 
+  const isLogin = useSelector((store) => store.users.is_login);
+
   return (
-    <>
-      <Test>
+    <React.Fragment>
+      <Container>
         <Text> 댓글내용 </Text>
-        <Input _onChange={changeCommentcontent}> 내용을 입력해주세요 </Input>
-        <Btn _onClick={addComment}> 작성하기 </Btn>
-      </Test>
-    </>
+        <Input
+          placeholder={
+            isLogin ? "댓글을 입력해주세요." : "로그인 후 이용해주세요."
+          }
+          _onChange={changeCommentcontent}
+        >
+          {" "}
+        </Input>
+        <Btn margin="10px 0px" _onClick={addComment}>
+          {" "}
+          작성하기{" "}
+        </Btn>
+      </Container>
+    </React.Fragment>
   );
 };
 
-const Test = styled.div`
-  width: 70%;
-  background-color: White;
-  margin: 150px auto;
-  top: 100px;
-  position: relative;
-  border: 3px solid black;
-  padding: 5px 5px 5px 5px;
-  border-radius: 10px;
+const Container = styled.div`
+  margin: 20px;
 `;
 
 export default CommentWrite;

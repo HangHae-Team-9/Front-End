@@ -28,6 +28,9 @@ export const apis = {
       categoryname: categoryname,
     });
   },
+  delPost: (id) => {
+    api.delete(`/api/posting/${id}`);
+  },
   // 메인페이지 카드 뷰
   getPostCard: () => api.get("/api/user/main"),
   // 상세페이지 뷰

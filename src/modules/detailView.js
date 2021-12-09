@@ -27,8 +27,16 @@ export const _loadDetailView =
   (id) =>
   async (dispatch, getState, { history }) => {
     const { data } = await apis.getDetailCard(id);
-    console.log(data);
     dispatch(loadDetailView(data));
+  };
+
+export const _deleteDetailView =
+  (id) =>
+  async (dispatch, getState, { history }) => {
+    await apis.delPost(id);
+    window.location.reload();
+    window.alert("삭제 완료");
+    history.replace("/");
   };
 
 // reducer

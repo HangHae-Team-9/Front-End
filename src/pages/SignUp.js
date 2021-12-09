@@ -6,6 +6,8 @@ import Input from "../elements/Input";
 import Text from "../elements/Text";
 import { userCreators } from "../modules/users";
 import { usernameCheck, passwordCheck, emailCheck } from "../shared/regExp";
+import axios from "axios";
+import { apis } from "../shared/api";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
@@ -13,23 +15,32 @@ const SignUp = (props) => {
   const [pw, setPw] = useState("");
   const [pw_chk, setPw_chk] = useState("");
   const [email, setEmail] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
+  const [checkUsername, setCheckUsername] = useState("");
 
   const changeUsername = (e) => {
     setUsername(e.target.value);
   };
+
+  function changeEmail(e) {
+    setEmail(e.target.value);
+  }
+
   const changePw = (e) => {
     setPw(e.target.value);
   };
   function changePw_chk(e) {
     setPw_chk(e.target.value);
   }
-  function changeEmail(e) {
-    setEmail(e.target.value);
-  }
 
   function register() {
     if (username === "" || pw === "" || pw_chk === "" || email === "") {
       window.alert("빈 칸이 없도록 모두 입력해주세요");
+      return;
+    }
+
+    if (!emailCheck(email)) {
+      window.alert("이메일 형식이 올바르지 않습니다.");
       return;
     }
 
@@ -46,12 +57,43 @@ const SignUp = (props) => {
       window.alert("비밀번호는 4자이상의 비밀번호여야 합니다.");
       return;
     }
-    if (!emailCheck(email)) {
-      window.alert("이메일 형식이 올바르지 않습니다.");
-      return;
-    }
 
-    console.log(username, pw, pw_chk, email);
+    const onClickUsernameCheck = () => {
+      if (username === "") {
+        window.alert("아이디를 입력해주세요.");
+      } else {
+        const usernameCheckInput = { username: username };
+        apis
+          .checkUsername(usernameCheckInput)
+          .then((response) => {
+            window.alert("사용하실 수 있는 아이디입니다.");
+            setCheckUsername(true);
+          })
+          .catch((error) => {
+            window.alert("이미 존재하는 아이디입니다.");
+            setCheckUsername(false);
+          });
+      }
+    };
+
+    const onClickEmailCheck = () => {
+      if (email === "") {
+        window.alert("이메일을 입력해주세요.");
+      } else {
+        const emailcheckInput = { email: `${email}` };
+        apis
+          .signup(emailcheckInput)
+          .then((response) => {
+            window.alert("사용하실 수 있는 이메일입니다.");
+            setCheckEmail(true);
+          })
+          .catch((error) => {
+            window.alert("이미 가입된 이메일입니다.");
+            setCheckEmail(false);
+          });
+      }
+    };
+
     dispatch(userCreators.registerDB(username, pw, pw_chk, email));
   }
 
@@ -60,15 +102,38 @@ const SignUp = (props) => {
       <Text size="14px" bold>
         아이디
       </Text>
-      <Input
-        placeholder="아이디를 입력해주세요"
-        margin="10px 0px"
-        _onChange={changeUsername}
-      />
-      <Btn width="80px" fs="11px">
-        {" "}
-        중복확인{" "}
-      </Btn>
+      <Container>
+        <Input
+          width="70%"
+          placeholder="아이디를 입력해주세요"
+          margin="10px 0px"
+          _onChange={changeUsername}
+        />
+        {checkEmail === true ? (
+          <Btn width="80px" fs="11px">
+            중복확인
+          </Btn>
+        ) : (
+          <Btn width="80px" fs="11px">
+            중복확인
+          </Btn>
+        )}
+      </Container>
+
+      <Text size="14px" bold>
+        이메일
+      </Text>
+      <Container>
+        <Input
+          width="70%"
+          placeholder="닉네임을 입력해주세요"
+          margin="10px 0px"
+          _onChange={changeEmail}
+        />
+        <Btn width="80px" fs="11px">
+          중복확인
+        </Btn>
+      </Container>
 
       <Text size="14px" bold>
         비밀번호
@@ -90,21 +155,9 @@ const SignUp = (props) => {
         type="password"
       />
 
-      <Text size="14px" bold>
-        이메일
-      </Text>
-      <Container>
-        <Input
-          width="70%"
-          placeholder="닉네임을 입력해주세요"
-          margin="10px 0px"
-          _onChange={changeEmail}
-        />
-        <Btn width="80px" fs="11px">
-          중복확인
-        </Btn>
-      </Container>
-      <Btn _onClick={register}>회원가입</Btn>
+      <Btn _onClick={register} pading="10px" margin="20px 0px">
+        회원가입
+      </Btn>
     </Test>
   );
 };

@@ -19,9 +19,9 @@ export default function Navigation() {
   console.log(document.cookie);
 
   const isLogin = useSelector((store) => store.users.is_login);
+  console.log(isLogin);
   // const username = useSelector((store) => store.users.user);
   // console.log(username);
-  // console.log(isLogin);
 
   const signOut = () => {
     console.log("logout");
@@ -80,6 +80,10 @@ export default function Navigation() {
     history.push("/pages/SignUp");
   };
 
+  const toMainPage = () => {
+    history.push("/");
+  };
+
   return (
     <NavBar>
       <Header>
@@ -96,6 +100,7 @@ export default function Navigation() {
           <HyperLink onClick={toSignUp}>회원가입</HyperLink>
         </LinkWrap>
         <MainNav>
+          <Go onClick={toMainPage}>메인페이지</Go>
           <Go onClick={toPageDog}>강아지</Go>
           <Go onClick={toPageCat}>고양이</Go>
           <Go onClick={notLogin}>포스팅하러가기</Go>

@@ -21,10 +21,10 @@ const addComment = createAction(ADD_COMMENT, (id, commentcontent) => ({
   id,
   commentcontent,
 }));
-const editComment = createAction(EDIT_COMMENT, (id, commentcontent) => ({
-  id,
-  commentcontent,
-}));
+// const editComment = createAction(EDIT_COMMENT, (id, commentcontent) => ({
+//   id,
+//   commentcontent,
+// }));
 const deleteComment = createAction(DELETE_COMMENT, (id) => ({
   id,
 }));
@@ -41,6 +41,12 @@ const initialState = {
 export const addCommentDB = (id, username, commentcontent) => {
   return (dispatch, getState, { history }) => {
     apis.addComment(id, username, commentcontent);
+  };
+};
+
+export const delCommentDB = (id) => {
+  return (dispatch, getState, { history }) => {
+    apis.delComment(id);
   };
 };
 

@@ -9,9 +9,11 @@ import Dropdown from "../elements/Dropdown";
 import Textarea from "../elements/Textarea";
 import { postActions } from "../modules/posting";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 const Posting = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const username = localStorage.getItem("username");
   const [title, setTitle] = useState("");
@@ -48,13 +50,19 @@ const Posting = (props) => {
     );
   };
 
+  const toMainPage = () => {
+    history.push("/");
+  };
+
   return (
     <>
       <CardWrap>
+        <Dropdown _onClick={changeCategoryname} />
         <BlogPost>
           <BlogPostImg>
             <Upload
-              margin="10px 0px 0px 5px"
+              margin="10px 0px 10px 5px"
+              justify-content="space-between"
               type="file"
               _onChange={(e) => {
                 encodeFileToBase64(e.target.files[0]);
@@ -73,33 +81,44 @@ const Posting = (props) => {
             </div>
           </BlogPostImg>
         </BlogPost>
-
         <BlogPostInfo>
-          <BlogPostTitle>
-            <Text size="20px" bold margin="10px 0px">
-              당신의 개냥용품을 소개해보세요
-            </Text>
-            <Input
-              margin="15px 0px"
-              align="right"
-              width="50%"
-              placeholder="제목을 작성해주세요."
-              _onChange={changeTitle}
-            />
-          </BlogPostTitle>
-          <BlogPostText>
-            <Text margin="5px 0px">여기에다 용품 자랑을 오지게 해보세요</Text>
-            <Textarea width="650px" height="200px" _onChange={changeContent} />
-          </BlogPostText>
-          <BlogPostCta>
-            <Btn margin="5px" width="130px" _onClick={addPosting}>
+          <Text size="20px" bold margin="10px 0px">
+            당신의 개냥용품을 소개해보세요
+          </Text>
+        </BlogPostInfo>
+
+        <BlogPostInput>
+          <Input
+            margin="15px 0px"
+            align="right"
+            width="50%"
+            placeholder="제목을 작성해주세요."
+            _onChange={changeTitle}
+          />
+        </BlogPostInput>
+        <BlogPostText>
+          <Text margin="5px 0px 10px 0px" bold>
+            여기에다 용품 자랑을 해보세요
+          </Text>
+        </BlogPostText>
+        <Textarea
+          width="50%"
+          height="300px"
+          _onChange={changeContent}
+          margin="0px 0px 20px 139px"
+        />
+        <BlogPostCta>
+          <Link to="/">
+            <Btn fs="17px" margin="5px" width="130px" _onClick={addPosting}>
               작성하기
             </Btn>
-            <Btn margin="5px" width="130px">
+          </Link>
+          <Link to="/">
+            <Btn fs="17px" margin="5px" width="130px">
               돌아가기
             </Btn>
-          </BlogPostCta>
-        </BlogPostInfo>
+          </Link>
+        </BlogPostCta>
       </CardWrap>
 
       {/* <BlogPost>
@@ -150,10 +169,10 @@ const Posting = (props) => {
 };
 
 const CardWrap = styled.div`
-  width: 42rem;
+  width: 35rem;
   padding: 0px 0px 0px 5px;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 10px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 16px 0px;
   transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
   margin: 1rem;
@@ -164,10 +183,11 @@ const CardWrap = styled.div`
     transform: translateY(-4px);
     box-shadow: rgb(0 0 0 / 15%) 0px 12px 20px 0px;
   }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
-  top: 150px;
-  float: left;
-  margin-left: 40px;
+  top: 50px;
 
   @media (max-width: 1024px) {
     width: 21rem;
@@ -189,18 +209,38 @@ const CardWrap = styled.div`
   }
 `;
 
-const BlogPost = styled.div``;
+const BlogPost = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const BlogPostImg = styled.div``;
 
-const BlogPostInfo = styled.div``;
+const BlogPostInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const BlogPostDate = styled.div``;
 
-const BlogPostTitle = styled.div``;
+const BlogPostInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-const BlogPostText = styled.div``;
+const BlogPostText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-const BlogPostCta = styled.div``;
+const BlogPostCta = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default Posting;

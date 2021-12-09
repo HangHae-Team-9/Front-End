@@ -13,4 +13,5 @@ export default function Textarea({ children, ...styles }) {
 const TextArea = styled.textarea`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
 `;

@@ -1,25 +1,36 @@
 import React from "react";
-import Text from "../elements/Text";
 import styled from "styled-components";
+import Btn from "../elements/Btn";
+import { useDispatch, useSelector } from "react-redux";
+import { delCommentDB } from "../modules/comment";
 
 const CommentList = (props) => {
   const comments = props.comments;
+  const id = props.id;
+  const dispatch = useDispatch();
+  const isLogin = useSelector((store) => store.users.is_login);
+  const delComment = () => {
+    window.alert("댓글을 삭제했습니다.");
+    dispatch(delCommentDB(id));
+  };
+
   console.log(comments);
   return (
     <React.Fragment>
-      <Test>
-        {comments &&
-          comments.map((comment, key) => {
-            const username = comment.username;
-            const content = comment.commentcontent;
-            return (
-              <React.Fragment key={key}>
-                <div>댓글작성자: {username}</div>
-                <div>댓글내용 : {content}</div>
-              </React.Fragment>
-            );
-          })}
-      </Test>
+      {comments &&
+        comments.map((comment, key) => {
+          const username = comment.username;
+          const content = comment.commentcontent;
+          return (
+            <CommentArea key={key}>
+              <CommentTitle>{username}</CommentTitle>
+              <div> {content}</div>
+              <Btn width="70px" height="50px" fs="12px" padding="0">
+                삭제
+              </Btn>
+            </CommentArea>
+          );
+        })}
     </React.Fragment>
   );
 };
@@ -27,30 +38,31 @@ const CommentList = (props) => {
 const Test = styled.div`
   width: 70%;
   background-color: White;
-  margin: 150px auto;
-  top: 100px;
+  margin: auto;
   position: relative;
   border: 3px solid black;
   padding: 5px 5px 5px 5px;
   border-radius: 10px;
 `;
 
+const CommentArea = styled.div`
+  display: flex;
+  margin: 10px;
+`;
+
+const CommentTitle = styled.div`
+  font-size: 20px;
+  padding: 0px 10px;
+  margin: 0px 10px;
+
+  &::before {
+    content: "";
+    width: 0px;
+    height: 30px;
+    border: 1px solid cornflowerblue;
+    background-color: cornflowerblue;
+    /* border-radius: 30%; */
+  }
+`;
+
 export default CommentList;
-
-const CommentItem = (props) => {
-  const { username, post_id, contents, insert_dt } = props;
-  return (
-    <>
-      <Text bold>{username}</Text>
-      <Text margin="0px">{contents}</Text>
-      <Text margin="0px">{insert_dt}</Text>
-    </>
-  );
-};
-
-CommentItem.defaultProps = {
-  username: "zhiyeon",
-  post_id: 1,
-  contents: "저희집 장난감이랑 똑같아요!!",
-  insert_dt: "2021-01-01 19:00:00",
-};

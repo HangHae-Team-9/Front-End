@@ -70,7 +70,7 @@ const BtnBx = styled.button`
       }
     `};
   border: none;
-  padding: 10px 20px;
+  padding: 20px 20px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 700;

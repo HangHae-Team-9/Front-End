@@ -14,6 +14,7 @@ import Posting from "./pages/Posting";
 import PostDetail from "./pages/PostDetail";
 import CategoryDog from "./pages/CategoryDog";
 import CategoryCat from "./pages/CategoryCat";
+import DetailEdit from "./pages/DetailEdit";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/pages/dog" component={CategoryDog} />
         <Route path="/pages/Posting" component={Posting} />
         <Route path="/pages/post/:id" component={PostDetail} />
+        <Route path="/pages/edit/:id" component={DetailEdit} />
         <Route path="/pages/SignUp" component={SignUp} />
         <Route path="/pages/Login" component={LogIn} />
         <Route path="/pages/card" exact component={Card} />
@@ -39,7 +41,7 @@ function App() {
 }
 
 const Wrap = styled.div`
-  width: 1130px;
+  width: 100%;
   height: 1100px;
   margin: auto;
 `;

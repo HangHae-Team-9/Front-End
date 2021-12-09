@@ -5,18 +5,18 @@ const Dropdown = (props) => {
   const { _onClick, width } = props;
   return (
     <React.Fragment>
-      <Entire_DD>
+      <EntireDD>
         <Dt>
-          <label for="카테고리 선택">카테고리 선택 </label>
+          <label>카테고리 선택</label>
         </Dt>
         <Dd onClick={_onClick}>강아지</Dd>
         <Dd onClick={_onClick}>고양이</Dd>
-      </Entire_DD>
+      </EntireDD>
     </React.Fragment>
   );
 };
 
-const Entire_DD = styled.div`
+const EntireDD = styled.div`
   display: inline-block;
   width: ${(props) => props.width};
   height: 17px;
@@ -44,6 +44,7 @@ const Dd = styled.div`
   margin: 0;
   line-height: 1.5em;
   color: #333;
+  cursor: pointer;
 
   &:hover {
     color: black;
