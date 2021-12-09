@@ -18,6 +18,7 @@ export const apis = {
   test: () => api.get("/"),
 
   //포스팅
+  // 포스팅 추가
   addPost: (username, title, content, imageSrc, categoryname) => {
     api.post("/api/posting", {
       username: username,
@@ -27,7 +28,10 @@ export const apis = {
       categoryname: categoryname,
     });
   },
+  // 메인페이지 카드 뷰
   getPostCard: () => api.get("/api/user/main"),
+  // 상세페이지 뷰
+  getDetailCard: (id) => api.get(`/api/user/posting/${id}`),
 
   edit: (id, contents) => api.put(`api/articles/${id}`, contents),
   del: (id) => api.delete(`api/articles/${id}`),

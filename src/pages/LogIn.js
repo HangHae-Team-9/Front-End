@@ -42,6 +42,7 @@ const LogIn = (props) => {
         <Input
           placeholder="패스워드를 입력해주세요"
           margin="10px 0px"
+          type="password"
           _onChange={changePassword}
         />
 
@@ -54,13 +55,11 @@ const LogIn = (props) => {
 };
 
 const Test = styled.div`
-  width: 30%;
+  width: 300px;
   background-color: White;
   margin: 150px auto;
-  top: 100px;
-  position: relative;
   border: 3px solid black;
-  padding: 5px 5px 5px 5px;
+  padding: 20px 30px;
   border-radius: 10px;
 `;
 

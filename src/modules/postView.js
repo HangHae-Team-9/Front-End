@@ -1,5 +1,4 @@
 import { createAction, handleActions } from "redux-actions";
-// import produce from "immer";
 import { apis } from "../shared/api";
 
 // action
@@ -10,7 +9,43 @@ const loadPostView = createAction(LOAD, (postView) => ({ postView }));
 
 // initialState
 const initialState = {
-  list: [],
+  list: [
+    // {
+    //   username: "상필이",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+    // {
+    //   username: "상필이2",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+    // {
+    //   username: "상필이3",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+    // {
+    //   username: "상필이4",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+    // {
+    //   username: "상필이4",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+    // {
+    //   username: "상필이4",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+    // {
+    //   username: "상필이4",
+    //   title: "상필이제목",
+    //   img: "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#",
+    // },
+  ],
   postView: null,
 };
 
@@ -18,7 +53,6 @@ const initialState = {
 export const _loadPostView =
   () =>
   async (dispatch, getState, { history }) => {
-    console.log("loadtest");
     const { data } = await apis.getPostCard();
     console.log(data);
     dispatch(loadPostView(data));

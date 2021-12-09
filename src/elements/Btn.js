@@ -13,9 +13,10 @@ const Button = ({ children, ...rest }) => {
 Button.defaultProps = {
   width: "100%",
   height: "40px;",
-  backgroundColor: "#fff",
-  color: "#000",
+  backgroundColor: "#111",
+  color: "#fff",
   margin: "auto",
+  fontSize: "30px;",
 };
 
 const BtnBx = styled.button`
@@ -67,22 +68,13 @@ const BtnBx = styled.button`
       &:hover {
         opacity: 80%;
       }
-    `}
-  ${(props) =>
-    props.yellow &&
-    css`
-      background-color: #f2c94c;
-      color: #fff;
-      &:hover {
-        opacity: 80%;
-      }
-    `}
-	border: none;
+    `};
+  border: none;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 20px;
   background-color: ${(props) => props.bg};
   margin: ${(props) => props.margin};
 `;

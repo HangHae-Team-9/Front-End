@@ -9,8 +9,8 @@ const Dropdown = (props) => {
         <Dt>
           <label for="카테고리 선택">카테고리 선택 </label>
         </Dt>
-        <Dd onClick={_onClick}>강아지 용품</Dd>
-        <Dd onClick={_onClick}>고양이 용품</Dd>
+        <Dd onClick={_onClick}>강아지</Dd>
+        <Dd onClick={_onClick}>고양이</Dd>
       </Entire_DD>
     </React.Fragment>
   );

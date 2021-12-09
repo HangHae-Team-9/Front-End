@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 
 // reducers
+import detailView from "./detailView";
 import postView from "./postView";
 import users from "./users";
 
@@ -14,6 +15,7 @@ import { connectRouter } from "connected-react-router";
 
 const history = createBrowserHistory();
 const rootReducer = combineReducers({
+  detailView,
   postView,
   users,
   router: connectRouter(history),

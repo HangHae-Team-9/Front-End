@@ -43,10 +43,7 @@ Input.defaultProps = {
   label: false,
   placeholder: false,
   _onChange: false,
-  type: false,
   margin: false,
-  height: false,
-  type: "text",
 };
 
 const ElInput = styled.input`

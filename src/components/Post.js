@@ -27,8 +27,7 @@ const Posting = (props) => {
   const changeCategoryname = (e) => {
     setCategoryname(e.target.innerText);
   };
-  const img =
-    "https://search.naver.com/search.naver?where=image&sm=tab_jum&query=이미지#";
+  const img = "sd";
 
   const [imageSrc, setImageSrc] = useState("");
   const encodeFileToBase64 = (fileBlob) => {

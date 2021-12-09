@@ -5,7 +5,20 @@ import React, { useState } from "react";
 export default function MainPage() {
   return (
     <>
-      <Card />
+      <ContainBox>
+        <Card />
+      </ContainBox>
     </>
   );
 }
+
+const ContainBox = styled.div`
+  width: 100%;
+  max-width: 2000px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: white;
+`;
+
+const CardWrap = styled.div``;

@@ -39,12 +39,14 @@ const setLoginDB = (username, password) => {
       .then((res) => {
         console.log(username);
         console.log(document.cookie);
-        setCookie("token", res.data[1].token, 7);
-        console.log(document.cookie);
+        setCookie("token", res.data[1].token, 5);
+        console.log(res.data, "11");
         localStorage.setItem("username", res.data[0].username);
+        const test1 = localStorage;
+        console.log("11", test1);
         dispatch(setLogin({ username: username }));
-        window.alert("로그인성공");
         history.replace("/");
+        window.alert("로그인성공");
       })
       .catch((err) => {
         window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
@@ -53,23 +55,23 @@ const setLoginDB = (username, password) => {
 };
 
 const logOutDB = () => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     console.log("3");
-    deleteCookie("token");
+    await deleteCookie("token");
     localStorage.removeItem("username");
     console.log("1");
     dispatch(logOut());
     console.log("2");
-    history.replace("/login");
+    history.replace("/");
   };
 };
 
 const loginCheckDB = () => {
   return function (dispatch, getState, { history }) {
-    const userId = localStorage.getItem("username");
+    const username = localStorage.getItem("username");
     const tokenCheck = document.cookie;
     if (tokenCheck) {
-      dispatch(setLogin({ id: userId }));
+      dispatch(setLogin({ username: username }));
     } else {
       dispatch(logOut());
     }

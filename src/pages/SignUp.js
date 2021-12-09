@@ -39,9 +39,7 @@ const SignUp = (props) => {
     }
 
     if (!usernameCheck(username)) {
-      window.alert(
-        "아이디는 영문 대,소문자 또는 숫자가 1개 이상씩 포함된 3자이상이어야 합니다."
-      );
+      window.alert("아이디는 대문자,소문자,숫자로 이루어진 4~12자여야 합니다.");
       return;
     }
     if (!passwordCheck(pw)) {
@@ -102,12 +100,12 @@ const SignUp = (props) => {
 };
 
 const Test = styled.div`
-  width: 30%;
+  width: 300px;
   background-color: White;
   margin: 150px auto;
   position: relative;
   border: 3px solid black;
-  padding: 5px 5px 5px 5px;
+  padding: 20px 30px;
   border-radius: 10px;
 `;
 
