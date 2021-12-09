@@ -15,9 +15,6 @@ export default function Card() {
   }, []);
 
   const postList = useSelector((store) => store.postView.list);
-  console.log(postList);
-
-  const [post, setPost] = useState([]);
 
   return (
     <>

@@ -33,15 +33,13 @@ export const apis = {
   // 상세페이지 뷰
   getDetailCard: (id) => api.get(`/api/user/posting/${id}`),
 
-  edit: (id, contents) => api.put(`api/articles/${id}`, contents),
-  del: (id) => api.delete(`api/articles/${id}`),
-  articles: () => api.get("/api/articles"),
-  article: (id) => api.get(`/api/articles/${id}`),
-  search: (value) => api.get(`/api/articles/search?query=${value}`),
-
   //댓글//
-  addComment: (id, content) =>
-    api.post(`/api/articles/${id}/comments`, { content }),
+  addComment: (id, username, commentcontent) => {
+    api.post(`/api/posting/${id}/comment`, {
+      username: username,
+      commentcontent: commentcontent,
+    });
+  },
   comments: (id) => api.get(`/api/articles/${id}/comments`),
   delComment: (id, coId) => api.delete(`/api/articles/${id}/comments/${coId}`),
   editComment: (id, coId, content) =>
@@ -64,4 +62,9 @@ export const apis = {
   userInfo: () => api.get(`/myinfo`),
   userPassword: (pw) => api.post(`/myinfo`, pw),
   userNewPassword: (pw) => api.put(`/myinfo`, pw),
+  edit: (id, contents) => api.put(`api/articles/${id}`, contents),
+  del: (id) => api.delete(`api/articles/${id}`),
+  articles: () => api.get("/api/articles"),
+  article: (id) => api.get(`/api/articles/${id}`),
+  search: (value) => api.get(`/api/articles/search?query=${value}`),
 };

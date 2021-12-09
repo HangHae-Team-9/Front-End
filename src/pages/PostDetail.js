@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const PostDetail = (props) => {
   const id = props.match.params.id;
+  console.log(typeof id);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -17,7 +18,7 @@ const PostDetail = (props) => {
 
   return (
     <React.Fragment>
-      <CommentWrite />
+      <CommentWrite id={id} />
       <CommentList />
     </React.Fragment>
   );

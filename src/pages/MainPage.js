@@ -20,5 +20,3 @@ const ContainBox = styled.div`
   margin-bottom: 50px;
   background-color: white;
 `;
-
-const CardWrap = styled.div``;

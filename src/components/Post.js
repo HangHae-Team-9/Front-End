@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Posting = (props) => {
   const dispatch = useDispatch();
 
-  const username = useSelector((state) => state.users.user.username);
+  const username = localStorage.getItem("username");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [categoryname, setCategoryname] = useState("");
@@ -51,7 +51,7 @@ const Posting = (props) => {
   return (
     <>
       <Test>
-        <Text margin="0px" size="30px" bold>
+        <Text margin="20px" size="30px" bold>
           게시글 작성
         </Text>
         <Container>
@@ -81,7 +81,7 @@ const Posting = (props) => {
           <Scontain>
             <Input
               align="right"
-              width="90%"
+              width="50%"
               label="글 제목"
               placeholder="제목을 작성해주세요."
               _onChange={changeTitle}
@@ -104,16 +104,19 @@ const Posting = (props) => {
 };
 
 const Test = styled.div`
-  width: 900px;
-  height: 100%;
+  width: 500px;
+  height: 650px;
   background-color: green;
+  border-radius: 20px;
   margin: auto;
   top: 70px;
   position: relative;
+  padding: 1px;
 `;
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 const Scontain = styled.div`

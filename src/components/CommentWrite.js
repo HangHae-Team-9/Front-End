@@ -1,17 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Text from "../elements/Text";
 import Btn from "../elements/Btn";
 import Input from "../elements/Input";
-
+import axios from "axios";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { addCommentDB } from "../modules/comment";
 
-const CommentWrite = () => {
+const CommentWrite = (props) => {
+  const id = props.id;
+  console.log(id);
+
+  const dispatch = useDispatch();
+  const [commentcontent, setCommentcontent] = useState("");
+
+  const username = localStorage.getItem("username");
+  const data = useSelector((state) => state);
+
+  const changeCommentcontent = (e) => {
+    setCommentcontent(e.target.value);
+  };
+
+  console.log(id, username, commentcontent);
+  const addComment = () => {
+    dispatch(addCommentDB(id, username, commentcontent));
+    // setCommentcontent("");
+    // document.location.reload();
+  };
+
   return (
     <>
       <Test>
         <Text> 댓글내용 </Text>
-        <Input> 내용을 입력해주세요 </Input>
-        <Btn> 작성하기 </Btn>
+        <Input _onChange={changeCommentcontent}> 내용을 입력해주세요 </Input>
+        <Btn _onClick={addComment}> 작성하기 </Btn>
       </Test>
     </>
   );
