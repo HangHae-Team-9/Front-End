@@ -1,9 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
-import { produce } from "immer";
 import { apis } from "../shared/api";
-// import "moment";
-// import moment from "moment";
-import { getCookie } from "../shared/cookies";
 
 // action
 
@@ -39,8 +35,10 @@ const initialState = {
 
 //thunk
 export const addCommentDB = (id, username, commentcontent) => {
-  return (dispatch, getState, { history }) => {
-    apis.addComment(id, username, commentcontent);
+  return async (dispatch, getState, { history }) => {
+    await apis.addComment(id, username, commentcontent);
+    // window.location.reload();
+    window.alert("작성 성공");
   };
 };
 
@@ -63,21 +61,24 @@ export const delCommentDB = (id) => {
 
 //reducer
 
-// export default handleActions(
-//   {
-//     [SET_COMMENT]: (state, action) =>
-//       produce(state, (draft) => {
-//         draft.list[action.payload.post_id] = action.payload.commentcontent;
-//       }),
-//     [ADD_COMMENT]: (state, action) => produce(state, (draft) => {}),
-//     [DELET_COMMENT] : (state, action) => produce(state,(draft)=> { }),
-//     [LOADING]: (state, action) =>
-//       produce(state, (draft) => {
-//         draft.is_loading = action.payload.is_loading;
-//       }),
-//   },
-//   initialState
-// );
+export default handleActions(
+  {
+    [SET_COMMENT]: (state, action) => {
+      return {
+        ...state,
+        list: action.payload.list,
+      };
+    },
+
+    // [ADD_COMMENT]: (state, action) => produce(state, (draft) => {}),
+    // [DELET_COMMENT] : (state, action) => produce(state,(draft)=> { }),
+    // [LOADING]: (state, action) =>
+    //   produce(state, (draft) => {
+    //     draft.is_loading = action.payload.is_loading;
+    //   }),
+  },
+  initialState
+);
 
 // export const actionCreators = {
 //   getCommentDB,

@@ -4,7 +4,8 @@ import Grid from "./Grid";
 import Text from "./Text";
 
 const Input = (props) => {
-  const { label, placeholder, _onChange, type, margin, height, width } = props;
+  const { label, placeholder, _onChange, type, margin, height, width, _value } =
+    props;
 
   // if (multiline) {
   //   return (
@@ -26,6 +27,7 @@ const Input = (props) => {
         margin={margin}
         width={width}
         height={height}
+        value={_value}
       />
     </React.Fragment>
   );

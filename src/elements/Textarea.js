@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Textarea({ children, ...styles }) {
   return (
     <>
-      <TextArea {...styles} onChange={styles._onChange}>
+      <TextArea {...styles} onChange={styles._onChange} value={styles._value}>
         {children}
       </TextArea>
     </>

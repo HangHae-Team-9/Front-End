@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Upload = (props) => {
-  const { _onChange, margin, width, height, type } = props;
+  const { _onChange, margin, width, height, type, _onClick } = props;
   return (
     <>
       <UpInput
         type={type}
         onChange={_onChange}
+        onClick={_onClick}
         margin={margin}
         width={width}
         height={height}

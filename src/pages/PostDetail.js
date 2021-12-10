@@ -10,7 +10,6 @@ import styled from "styled-components";
 const PostDetail = (props) => {
   const id = props.match.params.id;
   const dispatch = useDispatch();
-  // delay(1000)
 
   React.useEffect(() => {
     dispatch(_loadDetailView(id));

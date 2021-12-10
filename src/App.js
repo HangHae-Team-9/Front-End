@@ -5,7 +5,6 @@ import { Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { userCreators } from "./modules/users";
-import { _loadDetailView } from "./modules/detailView";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import MainPage from "./pages/MainPage";
@@ -20,7 +19,8 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(userCreators.loginCheckDB());
-  }, []);
+  }, [dispatch]);
+
   return (
     <Wrap>
       <GlobalStyles />

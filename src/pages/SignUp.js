@@ -4,19 +4,24 @@ import styled from "styled-components";
 import Btn from "../elements/Btn";
 import Input from "../elements/Input";
 import Text from "../elements/Text";
+import { useHistory } from "react-router";
 import { userCreators } from "../modules/users";
 import { usernameCheck, passwordCheck, emailCheck } from "../shared/regExp";
-import axios from "axios";
 import { apis } from "../shared/api";
 
 const SignUp = (props) => {
+  const history = useHistory();
+  if (document.cookie) {
+    history.replace("/");
+  }
+
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [pw, setPw] = useState("");
   const [pw_chk, setPw_chk] = useState("");
   const [email, setEmail] = useState("");
-  const [checkEmail, setCheckEmail] = useState("");
   const [checkUsername, setCheckUsername] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
 
   const changeUsername = (e) => {
     setUsername(e.target.value);
@@ -33,14 +38,45 @@ const SignUp = (props) => {
     setPw_chk(e.target.value);
   }
 
+  const onClickUsernameCheck = () => {
+    if (username === "") {
+      window.alert("아이디를 입력해주세요.");
+    } else if (!usernameCheck(username)) {
+      window.alert("아이디는 대문자,소문자,숫자로 이루어진 4~12자여야 합니다.");
+      return;
+    } else {
+      apis
+        .checkUsername(username)
+        .then((response) => {
+          window.alert(response.data);
+        })
+        .catch((error) => {
+          window.alert(error.data);
+        });
+    }
+  };
+
+  const onClickEmailCheck = () => {
+    if (email === "") {
+      window.alert("이메일을 입력해주세요.");
+    } else if (!emailCheck(email)) {
+      window.alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    } else {
+      apis
+        .checkUsername(username)
+        .then((response) => {
+          window.alert(response.data);
+        })
+        .catch((error) => {
+          window.alert(error.data);
+        });
+    }
+  };
+
   function register() {
     if (username === "" || pw === "" || pw_chk === "" || email === "") {
       window.alert("빈 칸이 없도록 모두 입력해주세요");
-      return;
-    }
-
-    if (!emailCheck(email)) {
-      window.alert("이메일 형식이 올바르지 않습니다.");
       return;
     }
 
@@ -58,42 +94,6 @@ const SignUp = (props) => {
       return;
     }
 
-    const onClickUsernameCheck = () => {
-      if (username === "") {
-        window.alert("아이디를 입력해주세요.");
-      } else {
-        const usernameCheckInput = { username: username };
-        apis
-          .checkUsername(usernameCheckInput)
-          .then((response) => {
-            window.alert("사용하실 수 있는 아이디입니다.");
-            setCheckUsername(true);
-          })
-          .catch((error) => {
-            window.alert("이미 존재하는 아이디입니다.");
-            setCheckUsername(false);
-          });
-      }
-    };
-
-    const onClickEmailCheck = () => {
-      if (email === "") {
-        window.alert("이메일을 입력해주세요.");
-      } else {
-        const emailcheckInput = { email: `${email}` };
-        apis
-          .signup(emailcheckInput)
-          .then((response) => {
-            window.alert("사용하실 수 있는 이메일입니다.");
-            setCheckEmail(true);
-          })
-          .catch((error) => {
-            window.alert("이미 가입된 이메일입니다.");
-            setCheckEmail(false);
-          });
-      }
-    };
-
     dispatch(userCreators.registerDB(username, pw, pw_chk, email));
   }
 
@@ -109,15 +109,9 @@ const SignUp = (props) => {
           margin="10px 0px"
           _onChange={changeUsername}
         />
-        {checkEmail === true ? (
-          <Btn width="80px" fs="11px">
-            중복확인
-          </Btn>
-        ) : (
-          <Btn width="80px" fs="11px">
-            중복확인
-          </Btn>
-        )}
+        <Btn width="80px" fs="11px" _onClick={onClickUsernameCheck}>
+          중복확인
+        </Btn>
       </Container>
 
       <Text size="14px" bold>
@@ -130,7 +124,7 @@ const SignUp = (props) => {
           margin="10px 0px"
           _onChange={changeEmail}
         />
-        <Btn width="80px" fs="11px">
+        <Btn width="80px" fs="11px" _onClick={onClickEmailCheck}>
           중복확인
         </Btn>
       </Container>

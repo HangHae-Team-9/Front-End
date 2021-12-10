@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { _loadPostView } from "../modules/postView";
@@ -28,11 +28,7 @@ export default function Card() {
         return (
           <CardBox key={key} onClick={onC}>
             <ImageWrap>
-              <ImageMain
-                src={
-                  "https://ww.namu.la/s/d6ddbc7b5ab45d5d4bca94f571d2ef704a092686014909fc903737b471d6e86156eaa89a221e4f5d398d2cfbc4facfe2d1f49d94017050e2d8605b4a9461acbf4f4aaabc336b82e7171ea19a02afbfe4d377672496cdba870d00135017bab14c"
-                }
-              ></ImageMain>
+              <ImageMain src={post.img}></ImageMain>
             </ImageWrap>
             <InfoWrap>
               <InfoBox>

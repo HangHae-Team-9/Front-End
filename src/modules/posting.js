@@ -16,12 +16,13 @@ import { apis } from "../shared/api";
 // };
 
 // thunk
-const addPostDB = (username, title, content, imageSrc, categoryname) => {
-  return async (dispatch, getState, { history }) => {
-    await apis.addPost(username, title, content, imageSrc, categoryname);
-    window.location.reload();
-    window.alert("작성 성공");
-    history.replace("/");
+
+const addPostDB = (username, title, content, file, categoryname) => {
+  return function (dispatch, getState, { history }) {
+    apis.addPost(username, title, content, file, categoryname).then((res) => {
+      window.alert(res.data);
+      history.replace("/");
+    });
   };
 };
 

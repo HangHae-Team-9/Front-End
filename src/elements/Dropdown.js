@@ -7,7 +7,7 @@ const Dropdown = (props) => {
     <React.Fragment>
       <EntireDD>
         <Dt>
-          <label>카테고리 선택</label>
+          <label id="category">카테고리 선택</label>
         </Dt>
         <Dd onClick={_onClick}>강아지</Dd>
         <Dd onClick={_onClick}>고양이</Dd>

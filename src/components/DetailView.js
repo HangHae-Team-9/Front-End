@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { _deleteDetailView } from "../modules/detailView";
-import { Route, useHistory } from "react-router";
-import DetailEdit from "../pages/DetailEdit";
 import { Link } from "react-router-dom";
 
 export default function DetailView(props) {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const detailView = props.detailView;
   console.log(detailView);

@@ -8,8 +8,10 @@ import Text from "../elements/Text";
 import Dropdown from "../elements/Dropdown";
 import Textarea from "../elements/Textarea";
 import { postActions } from "../modules/posting";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
+import { apis, apiMultiPart } from "../shared/api";
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -19,6 +21,8 @@ const Posting = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [categoryname, setCategoryname] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
@@ -29,9 +33,12 @@ const Posting = (props) => {
   const changeCategoryname = (e) => {
     setCategoryname(e.target.innerText);
   };
-  const img = "sd";
 
-  const [imageSrc, setImageSrc] = useState("");
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+  console.log(selectedFile);
+
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
@@ -42,16 +49,20 @@ const Posting = (props) => {
       };
     });
   };
-  console.log(username, title, content, img, categoryname);
 
-  const addPosting = () => {
-    dispatch(
-      postActions.addPostDB(username, title, content, img, categoryname)
-    );
-  };
+  const addPosting = async (e) => {
+    e.preventDefault();
 
-  const toMainPage = () => {
-    history.push("/");
+    const file = new FormData();
+
+    file.append("file", selectedFile);
+
+    apiMultiPart.addImg(file).then((res) => {
+      const file = res.data;
+      dispatch(
+        postActions.addPostDB(username, title, content, file, categoryname)
+      );
+    });
   };
 
   return (
@@ -64,20 +75,11 @@ const Posting = (props) => {
               margin="10px 0px 10px 5px"
               justify-content="space-between"
               type="file"
-              _onChange={(e) => {
-                encodeFileToBase64(e.target.files[0]);
-              }}
+              _onChange={handleFileChange}
               style={{ margin: "15px 0" }}
             />
             <div className="preview">
-              {imageSrc && (
-                <img
-                  width="70%"
-                  height="70%"
-                  src={imageSrc}
-                  alt="preview-img"
-                />
-              )}
+              {imageSrc && <img src={imageSrc} alt="preview-img" />}
             </div>
           </BlogPostImg>
         </BlogPost>
@@ -108,11 +110,11 @@ const Posting = (props) => {
           margin="0px 0px 20px 139px"
         />
         <BlogPostCta>
-          <Link to="/">
-            <Btn fs="17px" margin="5px" width="130px" _onClick={addPosting}>
-              작성하기
-            </Btn>
-          </Link>
+          {/* <Link to="/"> */}
+          <Btn fs="17px" margin="5px" width="130px" _onClick={addPosting}>
+            작성하기
+          </Btn>
+          {/* </Link> */}
           <Link to="/">
             <Btn fs="17px" margin="5px" width="130px">
               돌아가기
@@ -120,50 +122,6 @@ const Posting = (props) => {
           </Link>
         </BlogPostCta>
       </CardWrap>
-
-      {/* <BlogPost>
-        <Text margin="20px" size="30px" bold>
-          게시글 작성
-        </Text>
-        <Dropdown _onClick={changeCategoryname} />
-        <Upload
-          type="file"
-          _onChange={(e) => {
-            encodeFileToBase64(e.target.files[0]);
-          }}
-          style={{ margin: "15px 0" }}
-        />
-
-        <div className="preview" width="500px" height="500px" margin="10px">
-          {imageSrc && (
-            <img
-              width="300px"
-              height="300px"
-              src={imageSrc}
-              alt="preview-img"
-            />
-          )}
-        </div>
-
-        <Input
-          align="right"
-          width="50%"
-          label="글 제목"
-          placeholder="제목을 작성해주세요."
-          _onChange={changeTitle}
-        />
-        <Text>글 내용</Text>
-
-        <Textarea width="300px" height="300px" _onChange={changeContent} />
-
-        <Btn margin="5px" width="90px" _onClick={addPosting}>
-          작성하기
-        </Btn>
-        <Btn margin="5px" width="90px">
-          취소
-        </Btn>
-      </BlogPost>
-      */}
     </>
   );
 };
@@ -183,7 +141,6 @@ const CardWrap = styled.div`
     transform: translateY(-4px);
     box-shadow: rgb(0 0 0 / 15%) 0px 12px 20px 0px;
   }
-  display: block;
   margin-left: auto;
   margin-right: auto;
   position: relative;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Text from "../elements/Text";
 import Btn from "../elements/Btn";
 import Input from "../elements/Input";
-import axios from "axios";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentDB } from "../modules/comment";
@@ -32,7 +31,10 @@ const CommentWrite = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Text> 댓글내용 </Text>
+        <Text margin="10px 0px" size="20px">
+          {" "}
+          댓글{" "}
+        </Text>
         <Input
           placeholder={
             isLogin ? "댓글을 입력해주세요." : "로그인 후 이용해주세요."
@@ -41,7 +43,7 @@ const CommentWrite = (props) => {
         >
           {" "}
         </Input>
-        <Btn margin="10px 0px" _onClick={addComment}>
+        <Btn margin="10px 0px" fs="15px" _onClick={addComment}>
           {" "}
           작성하기{" "}
         </Btn>

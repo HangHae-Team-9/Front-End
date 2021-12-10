@@ -7,11 +7,17 @@ import { apis } from "../shared/api";
 const LOGIN = "user/LOGIN";
 const LOGOUT = "user/LOGOUT";
 const USERINFO = "user/USERINFO";
+const CHECK_USERNAME = "user/CHECKUSERNAME";
+const CHECK_EMAIL = "user/CHECKEMAIL";
 
 // action creator
 const setLogin = createAction(LOGIN, (user) => ({ user }));
 const logOut = createAction(LOGOUT, (user) => ({ user }));
 const userInfo = createAction(LOGIN, (user) => ({ user }));
+const checkUsername = createAction(CHECK_USERNAME, (username) => ({
+  username,
+}));
+const checkEmail = createAction(CHECK_EMAIL, (email) => ({ email }));
 
 // initialState
 const initialState = {
@@ -45,7 +51,7 @@ const setLoginDB = (username, password) => {
         const test1 = localStorage;
         console.log("11", test1);
         dispatch(setLogin({ username: username }));
-        history.replace("/");
+        history.goBack();
         window.alert("로그인성공");
       })
       .catch((err) => {
@@ -62,7 +68,7 @@ const logOutDB = () => {
     console.log("1");
     dispatch(logOut());
     console.log("2");
-    history.replace("/");
+    history.push("/");
   };
 };
 
@@ -87,6 +93,33 @@ const userInfoDB = () => {
       })
       .catch((err) => {
         return err;
+      });
+  };
+};
+
+//(중복확인)//
+const usernameCheckDB = (username) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .checkUsername(username)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const emailCheckDB = (email) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .checkEmail(email)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -119,4 +152,6 @@ export const userCreators = {
   logOutDB,
   loginCheckDB,
   userInfoDB,
+  usernameCheckDB,
+  emailCheckDB,
 };

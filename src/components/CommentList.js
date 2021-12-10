@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Btn from "../elements/Btn";
+import Text from "../elements/Text";
 import { useDispatch, useSelector } from "react-redux";
 import { delCommentDB } from "../modules/comment";
 
@@ -9,6 +10,7 @@ const CommentList = (props) => {
   const id = props.id;
   const dispatch = useDispatch();
   const isLogin = useSelector((store) => store.users.is_login);
+
   const delComment = () => {
     window.alert("댓글을 삭제했습니다.");
     dispatch(delCommentDB(id));
@@ -24,8 +26,14 @@ const CommentList = (props) => {
           return (
             <CommentArea key={key}>
               <CommentTitle>{username}</CommentTitle>
-              <div> {content}</div>
-              <Btn width="70px" height="50px" fs="12px" padding="0">
+              <Text> {content}</Text>
+              <Btn
+                margin="0px"
+                width="70px"
+                height="50px"
+                fs="12px"
+                padding="0"
+              >
                 삭제
               </Btn>
             </CommentArea>
@@ -48,6 +56,7 @@ const Test = styled.div`
 const CommentArea = styled.div`
   display: flex;
   margin: 10px;
+  justify-content: space-around;
 `;
 
 const CommentTitle = styled.div`
