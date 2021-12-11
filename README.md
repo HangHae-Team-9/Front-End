@@ -46,7 +46,11 @@
 ## 🎞 프로젝트 시연 영상 🎞
 
 <br/>
-[홈페이지 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)<br/>
+
+[시연영상 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)
+
+[홈페이지 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)
+
 [와이어프레임](https://ovenapp.io/project/yBmVvSyjqJe0Nsgq1Vi0ZbalbHAH23MP#n3kas)
 </br>
 </br>
