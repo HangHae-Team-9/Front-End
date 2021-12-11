@@ -30,12 +30,16 @@
 
 ## ⚙️ 사용 기술 스택 ⚙️
 
-<img height="30" src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=plastic"/>
-<img height="30" src="https://img.shields.io/badge/Swagger-85EA2D?style=flat&logo=Swagger&logoColor=white">
-<img height="30" src="https://img.shields.io/badge/JWT-000000?style=flat&logo=JSON%20web%20tokens&logoColor=white">
-
-![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20Javascript%20%20&height=50&fontSize=50)
-
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20React%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20HTML%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20CSS%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20Javascript%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20AWS%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20SWEAGER%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20POSTMAN%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20GIT%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20GITHUB%20%20&height=40&fontSize=30)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20SOURCETREE%20%20&height=40&fontSize=30)
 </br>
 </br>
 
@@ -110,3 +114,5 @@
 </br>
 
 ## 느낀점
+
+<p>다음주 망했다.</p>
