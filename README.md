@@ -1,45 +1,56 @@
 # 🎊항해99 6주차 미니프로젝트 <9조>🎊
 
-# 프로젝트 소개🙌
-
-## 프로젝트 구성원
-
-<h3>정상일, 이지연, 김형래</h3>
-
-<hr/>
-
-<hr/>
+## ☝🏻프로젝트 소개
 
 </br>
-</br>
-
-📆2021.12.06 ~ 2021.12.11
 
 ## 개팔자가 상팔자🐕🐈
 
-<p>대한민국 4명중 한명은 반려동물을 키운다! 반려동물 인구 1500만 시대! 나만 알 수 없는 반려동물 꿀템🍯 대방출! 반려동물과 함께 찍은 리얼찐템 조회수는 UP!UP!</p>
+</br>
+📆 기간 : 2021.12.06 ~ 2021.12.11
+
+<p>대한민국 4명중 한명은 반려동물을 키운다! 반려동물 인구 1500만 시대! 나만 알 수 없는 반려동물 꿀템🍯 대방출! 반려동물과 함께 찍은 리얼찐템 조회수는 UP!UP!📈 사료, 장난감, 간식, 모든것을 자유롭게! 🐶😼 개팔자와 상팔자와 함께하세요! 🐾</p>
+
+</br>
+
+## ✌🏻프로젝트 구성원
+
+</br>
+<h2>✨프론트엔드<h2>
+<h3>정상일, 이지연, 김형래</h3>
+</br>
+<h2>✨백앤드<h2>
+<h3>서유리, 이한울, 이현범</h3>
+<hr/>
+
+<hr/>
 
 </br>
 </br>
 
-## 사용 기술 스택
+## ⚙️ 사용 기술 스택 ⚙️
 
-<img height="40" src="https://www.google.co.kr/imgres?imgurl=https%3A%2F%2Fwww.pngkey.com%2Fpng%2Fdetail%2F222-2224712_react-react-logo-png.png&imgrefurl=https%3A%2F%2Fwww.pngkey.com%2Fdetail%2Fu2w7e6i1i1o0o0e6_react-react-logo-png%2F&tbnid=QUT3n2M1Ux2H8M&vet=12ahUKEwiDgPLKtNv0AhX1JqYKHdUKB-EQMygOegUIARDDAQ..i&docid=UFJ0yFDkw--2kM&w=820&h=777&itg=1&q=react%20logo&client=safari&ved=2ahUKEwiDgPLKtNv0AhX1JqYKHdUKB-EQMygOegUIARDDAQ"></a>
+<img height="30" src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=plastic"/>
+<img height="30" src="https://img.shields.io/badge/Swagger-85EA2D?style=flat&logo=Swagger&logoColor=white">
+<img height="30" src="https://img.shields.io/badge/JWT-000000?style=flat&logo=JSON%20web%20tokens&logoColor=white">
+
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%20Javascript%20%20&height=50&fontSize=50)
 
 </br>
 </br>
 
-## 🎞프로젝트 시연 영상🎞
+## 🎞 프로젝트 시연 영상 🎞
 
-[시연영상 바로가기](https://youtu.be/u5QnR_4bg2c) <br/>
+<br/>
 [홈페이지 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)<br/>
 [와이어프레임](https://ovenapp.io/project/yBmVvSyjqJe0Nsgq1Vi0ZbalbHAH23MP#n3kas)
 </br>
 </br>
+</br>
 
-## ⚙주요 기능⚙
+## ⚙ 주요 기능 ⚙
 
-❤**로그인/회원가입**
+🤍**로그인/회원가입**
 
 - 아이디 중복확인 기능
 - 회원가입시 아이디, Email, 비밀번호 유효성 검사
@@ -75,7 +86,7 @@
   </br>
   </br>
 
-## 📜API TABLE
+## 📜 API TABLE
 
 **회원가입**
 | 기능 | Method | URL | Request | response |
@@ -92,5 +103,10 @@
 </br>
 
 ## 📖 팀노션
+
+[팀노션 바로가기](https://www.notion.so/99-4-6-9-c2b95bdb4e4f40fc90a2a2294399013b)
+
+</br>
+</br>
 
 ## 느낀점
