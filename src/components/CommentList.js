@@ -7,21 +7,24 @@ import { delCommentDB } from "../modules/comment";
 
 const CommentList = (props) => {
   const comments = props.comments;
+  console.log(comments);
   const id = props.id;
+  // const commentId = comments.
   const dispatch = useDispatch();
 
-  const delComment = () => {
-    window.alert("댓글을 삭제했습니다.");
-    dispatch(delCommentDB(id));
+  const delComment = (key) => {
+    const commentId = key + 1;
+    console.log(commentId);
+    dispatch(delCommentDB(id, commentId));
   };
 
-  console.log(comments);
   return (
     <React.Fragment>
       {comments &&
         comments.map((comment, key) => {
           const username = comment.username;
           const content = comment.commentcontent;
+          console.log(username, key);
           return (
             <CommentArea key={key}>
               <CommentTitle>{username}</CommentTitle>
@@ -43,29 +46,30 @@ const CommentArea = styled.div`
   display: flex;
   margin: 10px;
   position: relative;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
 `;
 
 const CommentTitle = styled.div`
   font-size: 20px;
   padding: 0px 10px;
   margin: 0px 10px;
-  border-right: 3px solid cornflowerblue;
-  border-radius: 100%;
+  border-right: 1px solid #eee;
   pointer-events: none;
 `;
 
 const CommentContent = styled.div`
   font-size: 16px;
+  word-break: break-all;
+  width: 100%;
 `;
 
 const BtnPosition = styled.div`
-  position: absolute;
-  right: 0;
   display: flex;
+  width: 20%;
 `;
 
 const PutBtn = styled.div`
-  margin-right: 10px;
   cursor: pointer;
   color: #888;
   transition: 0.5s;
@@ -78,6 +82,7 @@ const DelBtn = styled.div`
   cursor: pointer;
   color: #888;
   transition: 1s;
+  margin-left: 10px;
 
   &:hover {
     color: red;

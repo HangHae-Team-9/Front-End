@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Btn from "../elements/Btn";
 import Input from "../elements/Input";
 import Text from "../elements/Text";
+import alert from "sweetalert";
 import { useHistory } from "react-router";
 import { userCreators } from "../modules/users";
 import { usernameCheck, passwordCheck, emailCheck } from "../shared/regExp";
@@ -41,19 +42,19 @@ const SignUp = (props) => {
 
   const onClickUsernameCheck = () => {
     if (username === "") {
-      window.alert("아이디를 입력해주세요.");
+      alert("아이디를 입력해주세요.");
     } else if (!usernameCheck(username)) {
-      window.alert("아이디는 대문자,소문자,숫자로 이루어진 4~12자여야 합니다.");
+      alert("아이디는 대문자,소문자,숫자로 이루어진 4~12자여야 합니다.");
       return;
     } else {
       apis
         .checkUsername(username)
         .then((response) => {
-          window.alert(response.data);
+          alert(response.data);
           setCheckUsername(true);
         })
         .catch((error) => {
-          window.alert(error.data);
+          alert(error.data);
           setCheckUsername(false);
         });
     }
@@ -62,19 +63,19 @@ const SignUp = (props) => {
 
   const onClickEmailCheck = () => {
     if (email === "") {
-      window.alert("이메일을 입력해주세요.");
+      alert("이메일을 입력해주세요.");
     } else if (!emailCheck(email)) {
-      window.alert("이메일 형식이 올바르지 않습니다.");
+      alert("이메일 형식이 올바르지 않습니다.");
       return;
     } else {
       apis
-        .checkUsername(username)
+        .checkEmail(email)
         .then((response) => {
-          window.alert(response.data);
+          alert(response.data);
           setCheckEmail(true);
         })
         .catch((error) => {
-          window.alert(error.data);
+          alert(error.data);
           setCheckEmail(false);
         });
     }
@@ -83,36 +84,36 @@ const SignUp = (props) => {
 
   function register() {
     if (username === "" || pw === "" || pw_chk === "" || email === "") {
-      window.alert("빈 칸이 없도록 모두 입력해주세요");
+      alert("빈 칸이 없도록 모두 입력해주세요");
       return;
     }
 
     if (!checkUsername || !checkEmail) {
-      window.alert("아이디 및 이메일 중복확인이 필요합니다.");
+      alert("아이디 및 이메일 중복확인이 필요합니다.");
       return;
     }
 
     if (pw.includes(username)) {
-      window.alert("비밀번호에 아이디와 같은 값을 포함할 수 없습니다.");
+      alert("비밀번호에 아이디와 같은 값을 포함할 수 없습니다.");
       return;
     }
 
     if (pw !== pw_chk) {
-      window.alert("비밀번호가 일치하지 않습니다.");
+      alert("비밀번호가 일치하지 않습니다.");
       return;
     }
 
     if (!usernameCheck(username)) {
-      window.alert("아이디는 대문자,소문자,숫자로 이루어진 4~12자여야 합니다.");
+      alert("아이디는 대문자,소문자,숫자로 이루어진 4~12자여야 합니다.");
       return;
     }
     if (!passwordCheck(pw)) {
-      window.alert("비밀번호는 4자이상의 비밀번호여야 합니다.");
+      alert("비밀번호는 4자이상의 비밀번호여야 합니다.");
       return;
     }
 
     if (pw.includes(username)) {
-      window.alert("비밀번호에 아이디와 같은 값을 포함할 수 없습니다.");
+      alert("비밀번호에 아이디와 같은 값을 포함할 수 없습니다.");
       return;
     }
 
@@ -131,7 +132,7 @@ const SignUp = (props) => {
           margin="10px 0px"
           _onChange={changeUsername}
         />
-        <Btn width="80px" fs="11px" _onClick={onClickUsernameCheck}>
+        <Btn width="90px" fs="11px" _onClick={onClickUsernameCheck}>
           중복확인
         </Btn>
       </Container>
@@ -146,7 +147,7 @@ const SignUp = (props) => {
           margin="10px 0px"
           _onChange={changeEmail}
         />
-        <Btn width="80px" fs="11px" _onClick={onClickEmailCheck}>
+        <Btn width="90px" fs="11px" _onClick={onClickEmailCheck}>
           중복확인
         </Btn>
       </Container>

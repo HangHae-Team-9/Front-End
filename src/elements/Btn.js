@@ -11,11 +11,11 @@ const Button = ({ children, ...rest }) => {
 
 Button.defaultProps = {
   width: "100%",
-  height: "40px;",
+  height: "20px",
   backgroundColor: "#111",
-  color: "#ff",
+  color: "#fff",
   margin: "auto",
-  fontSize: "30px;",
+  fontSize: "50px",
 };
 
 const BtnBx = styled.button`

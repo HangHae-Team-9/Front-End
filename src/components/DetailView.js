@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { _deleteDetailView } from "../modules/detailView";
 import { Link } from "react-router-dom";
-import { RiHeartAddLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function DetailView(props) {
@@ -23,8 +22,8 @@ export default function DetailView(props) {
     return (
       <Wrap>
         <PostView>
-          <Img src={detailView.img} alt="img"></Img>
           <PostTitle>{detailView.title}</PostTitle>
+          <Img src={detailView.img} alt="img"></Img>
           <PostContent>{detailView.content}</PostContent>
         </PostView>
         <Exp>
@@ -51,15 +50,14 @@ export default function DetailView(props) {
   return (
     <Wrap>
       <PostView>
-        <Img src={detailView.img} alt="img"></Img>
         <PostTitle>{detailView.title}</PostTitle>
+        <Img src={detailView.img} alt="img"></Img>
         <PostContent>{detailView.content}</PostContent>
       </PostView>
       <Exp>
         <Modified>등록일 {ymd}</Modified>
         <PostAuthor>작성자 {detailView.username}</PostAuthor>
       </Exp>
-      <RiHeartAddLine />
     </Wrap>
   );
 }
@@ -70,7 +68,6 @@ const Wrap = styled.div`
 
 const PostView = styled.div`
   width: 70%;
-  background-color: #eee;
   margin: auto;
   text-align: center;
   position: relative;
@@ -79,7 +76,7 @@ const PostView = styled.div`
 const PostTitle = styled.div`
   font-size: 27px;
   font-weight: 900;
-  margin: 40px;
+  margin: 40px 0 20px;
 `;
 
 const PostContent = styled.div`
@@ -96,21 +93,18 @@ const Img = styled.img`
 
 const Exp = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -30px;
+  left: 10px;
   pointer-events: none;
-  text-align: right;
 `;
 
-const Modified = styled.div`
-  margin-left: 15px;
-`;
+const Modified = styled.div``;
 
 const UDArea = styled.div`
   position: absolute;
   display: flex;
   right: 0;
-  top: 40px;
+  top: -40px;
 `;
 
 const UD = styled.div`

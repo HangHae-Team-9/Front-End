@@ -83,10 +83,10 @@ export const apis = {
       username: username,
       commentcontent: commentcontent,
     }),
-  comments: (id) => api.get(`/api/articles/${id}/comments`),
-  delComment: (id, coId) => api.delete(`/api/articles/${id}/comments/${coId}`),
-  editComment: (id, coId, content) =>
-    api.put(`/api/articles/${id}/comments/${coId}`, { content }),
+  delComment: (id, commentId) =>
+    api.delete(`/api/posting/${id}/comment/${commentId}`),
+  editComment: (id, commentId, content) =>
+    api.put(`/api/posting/${id}/comment/${commentId}`, { content }),
 
   // 회원가입 //
   signup: (username, pw, pw_chk, email) => {
@@ -103,9 +103,13 @@ export const apis = {
       username: username,
     }),
   //이메일 중복확인//
-  checkEmail: (email) => api.post("/api/user/checkemail", email),
+  checkEmail: (email) => api.post("/api/user/checkemail", { email: email }),
 
   //좋아요 기능//
-  likePost: (username, boardid) =>
-    api.post(`/api/board/like/${boardid}`, username),
+  likePost: (username, boardid, num, id) =>
+    api.post(`/api/board/like/${boardid}`, {
+      username: username,
+      num: num,
+      id: id,
+    }),
 };

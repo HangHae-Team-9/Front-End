@@ -11,11 +11,15 @@ export default function Footer() {
               display: "block",
               fontSize: "30px",
               color: "#222",
-              cursor: "wait",
+              cursor: "pointer",
               //   borderBottom: "1px solid #eee",
               //   borderRadius: "100%",
               marginBottom: "20px",
               padding: "20px",
+              float: "left",
+              position: "absolute",
+              bottom: "300px",
+              left: "135px",
             }}
           >
             React & Spring Team 9
@@ -29,6 +33,8 @@ export default function Footer() {
               <Name>정상일</Name>
               <Name>김형래</Name>
             </div>
+          </Ends>
+          <Endss>
             <div>
               <a href="https://github.com/HangHae-Team-9/Back-End">
                 Back-End-Github
@@ -37,7 +43,7 @@ export default function Footer() {
               <Name>이현범</Name>
               <Name>이한울</Name>
             </div>
-          </Ends>
+          </Endss>
         </WhoAreWe>
       </FooterWrap>
     </>
@@ -46,9 +52,7 @@ export default function Footer() {
 
 const FooterWrap = styled.div`
   width: 100%;
-  position: relative;
-  /* background: radial-gradient(#333, white); */
-  text-align: center;
+  position: absolute;
   bottom: -900px;
   margin: auto;
   color: #222;
@@ -70,6 +74,14 @@ const Ends = styled.div`
   padding-top: 10px;
   /* display: flex; */
   margin: auto;
+  float: left;
+`;
+
+const Endss = styled.div`
+  padding-top: 10px;
+  /* display: flex; */
+  margin: auto 60px;
+  float: left;
 `;
 
 const Name = styled.div`
@@ -80,17 +92,5 @@ const Name = styled.div`
 
   &:hover {
     color: #000;
-  }
-
-  @media screen and (max-width: 1200px) {
-    font-size: 30px;
-  }
-
-  @media screen and (max-width: 900px) {
-    font-size: 20px;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 13px;
   }
 `;

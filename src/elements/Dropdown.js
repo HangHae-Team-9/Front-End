@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
+  const [categoryname, setCategoryname] = useState("");
+
+  const Categoryname = (e) => {
+    setCategoryname(e.target.innerText);
+  };
+
   const { _onClick, width } = props;
+
+  // const abc = document.querySelector("#category");
+  // abc.innerText = categoryname;
   return (
     <React.Fragment>
       <EntireDD>

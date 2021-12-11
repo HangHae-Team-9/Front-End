@@ -1,5 +1,6 @@
 // import { createAction, handleActions } from "redux-actions";
 import { apis } from "../shared/api";
+import alert from "sweetalert";
 
 // action
 
@@ -23,13 +24,13 @@ const addPostDB = (username, title, content, file, categoryname) => {
       .addPost(username, title, content, file, categoryname)
       .then((res) => {
         if (res.data === "게시글 작성이 완료되었습니다.") {
-          window.alert(res.data);
+          alert(res.data);
           history.replace("/");
         } else {
-          window.alert(res.data);
+          alert(res.data);
         }
       })
-      .catch((e) => window.alert(e));
+      .catch((e) => alert(e));
   };
 };
 

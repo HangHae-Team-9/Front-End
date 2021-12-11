@@ -28,7 +28,7 @@ const LogIn = (props) => {
   };
 
   const move = () => {
-    window.location = `${REDIRECT_URI}`;
+    window.location = `${KAKAO_AUTH_URL}`;
   };
 
   return (
@@ -56,7 +56,7 @@ const LogIn = (props) => {
         <Btn margin="auto" _onClick={login}>
           로그인
         </Btn>
-        <div>
+        {/* <div>
           <div
             onClick={move}
             style={{
@@ -65,7 +65,7 @@ const LogIn = (props) => {
           >
             카카오로 로그인
           </div>
-        </div>
+        </div> */}
       </Test>
     </>
   );

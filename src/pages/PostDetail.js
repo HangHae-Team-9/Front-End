@@ -17,12 +17,13 @@ const PostDetail = (props) => {
   }, [dispatch, id]);
 
   const data = useSelector((a) => a.detailView.list);
+  console.log(data);
   const comments = data.comments;
 
   return (
     <Wrap>
       <DetailView detailView={data} id={id} />
-      <LikePost />
+      {/* <LikePost /> */}
       <Test>
         <CommentWrite id={id} />
         <CommentList comments={comments} />
@@ -30,6 +31,19 @@ const PostDetail = (props) => {
     </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  width: 80%;
+  max-width: 1130px;
+  min-width: 280px;
+  margin: auto;
+  position: relative;
+  top: 100px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding-bottom: 100px;
+  margin-bottom: 500px;
+`;
 
 const Test = styled.div`
   width: 70%;
@@ -39,17 +53,6 @@ const Test = styled.div`
   border: 3px solid black;
   padding: 5px 5px 5px 5px;
   border-radius: 10px;
-`;
-
-const Wrap = styled.div`
-  background-color: lightblue;
-  width: 80%;
-  max-width: 1130px;
-  min-width: 280px;
-  margin: auto;
-  position: relative;
-  top: 100px;
-  height: 100%;
 `;
 
 export default PostDetail;

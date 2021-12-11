@@ -3,6 +3,7 @@ import Text from "../elements/Text";
 import Btn from "../elements/Btn";
 import Input from "../elements/Input";
 import styled from "styled-components";
+import alert from "sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentDB } from "../modules/comment";
 
@@ -20,11 +21,11 @@ const CommentWrite = (props) => {
 
   const addComment = () => {
     if (!isLogin) {
-      window.alert("로그인 후 이용해 주시기 바랍니다");
+      alert("로그인 후 이용해 주시기 바랍니다");
       return;
     }
     if (commentcontent === "") {
-      return window.alert("남길 말을 적어주세요");
+      return alert("남길 말을 적어주세요");
     }
     dispatch(addCommentDB(id, username, commentcontent));
   };
@@ -49,6 +50,7 @@ const CommentWrite = (props) => {
 const Container = styled.div`
   margin: 20px;
   display: flex;
+  margin-bottom: 50px;
 `;
 
 const InputArea = styled.input`
@@ -69,7 +71,7 @@ const InputArea = styled.input`
 `;
 
 const BtnArea = styled.div`
-  width: 10%;
+  width: 58px;
   height: 50px;
   background-color: cornflowerblue;
   font-size: 1rem;

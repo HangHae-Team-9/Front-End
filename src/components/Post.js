@@ -59,7 +59,7 @@ const Posting = (props) => {
 
     await axios({
       method: "post",
-      url: "http://15.165.160.58/api/v1/upload",
+      url: "http://13.125.197.66/api/v1/upload",
       data: file,
       headers: {
         "Content-Type": "multipart/form-data",

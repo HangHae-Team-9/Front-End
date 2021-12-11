@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { apis } from "../shared/api";
+import alert from "sweetalert";
 
 // action
 
@@ -35,16 +36,19 @@ const initialState = {
 
 //thunk
 export const addCommentDB = (id, username, commentcontent) => {
-  return async (dispatch, getState, { history }) => {
-    await apis.addComment(id, username, commentcontent);
-    window.location.reload();
-    window.alert("작성 성공");
+  return (dispatch, getState, { history }) => {
+    apis.addComment(id, username, commentcontent).then((res) => {
+      window.location.reload();
+    });
   };
 };
 
-export const delCommentDB = (id) => {
+export const delCommentDB = (id, commentId) => {
   return (dispatch, getState, { history }) => {
-    apis.delComment(id);
+    apis.delComment(id, commentId).then((res) => {
+      alert(res);
+      window.location.reload();
+    });
   };
 };
 

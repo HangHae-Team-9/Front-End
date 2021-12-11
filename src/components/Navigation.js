@@ -26,7 +26,7 @@ export default function Navigation() {
   };
 
   const notLogin = () => {
-    window.alert("로그인하세요~");
+    window.alert("로그인 후 포스팅가능합니다.");
   };
 
   const dogSelector = useSelector((state) => state.postView.list);
@@ -46,10 +46,20 @@ export default function Navigation() {
                 alt="logoImg"
                 style={{ width: "100px" }}
               />
-              <NavTitle>개팔자가 상팔자</NavTitle>
+              <NavTitle>개발자가 상팔자</NavTitle>
             </Link>
             <LinkWrap>
-              <HyperLink>MyPage</HyperLink>
+              <NavLink
+                to="/pages/mypage"
+                activeStyle={{
+                  color: "#111",
+                  borderBottom: "1px solid #111",
+                  borderRadius: "100%",
+                  backgroundColor: "#eee",
+                }}
+              >
+                <HyperLink>MyPage</HyperLink>
+              </NavLink>
               <HyperLink onClick={signOut}>SignOut</HyperLink>
             </LinkWrap>
             <MainNav>
@@ -109,6 +119,7 @@ export default function Navigation() {
                 color: "#111",
                 borderBottom: "1px solid #111",
                 borderRadius: "100%",
+                backgroundColor: "#eee",
               }}
             >
               <HyperLink>로그인</HyperLink>
@@ -119,6 +130,7 @@ export default function Navigation() {
                 color: "#111",
                 borderBottom: "1px solid #111",
                 borderRadius: "100%",
+                backgroundColor: "#eee",
               }}
             >
               <HyperLink>회원가입</HyperLink>
