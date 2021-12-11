@@ -9,7 +9,6 @@ const CommentList = (props) => {
   const comments = props.comments;
   const id = props.id;
   const dispatch = useDispatch();
-  const isLogin = useSelector((store) => store.users.is_login);
 
   const delComment = () => {
     window.alert("댓글을 삭제했습니다.");
@@ -26,16 +25,13 @@ const CommentList = (props) => {
           return (
             <CommentArea key={key}>
               <CommentTitle>{username}</CommentTitle>
-              <Text> {content}</Text>
-              <Btn
-                margin="0px"
-                width="70px"
-                height="50px"
-                fs="12px"
-                padding="0"
-              >
-                삭제
-              </Btn>
+              <CommentContent> {content}</CommentContent>
+              {username === localStorage.getItem("username") && (
+                <BtnPosition>
+                  <PutBtn>수정</PutBtn>
+                  <DelBtn>삭제</DelBtn>
+                </BtnPosition>
+              )}
             </CommentArea>
           );
         })}
@@ -43,34 +39,48 @@ const CommentList = (props) => {
   );
 };
 
-const Test = styled.div`
-  width: 70%;
-  background-color: White;
-  margin: auto;
-  position: relative;
-  border: 3px solid black;
-  padding: 5px 5px 5px 5px;
-  border-radius: 10px;
-`;
-
 const CommentArea = styled.div`
   display: flex;
   margin: 10px;
-  justify-content: space-around;
+  position: relative;
 `;
 
 const CommentTitle = styled.div`
   font-size: 20px;
   padding: 0px 10px;
   margin: 0px 10px;
+  border-right: 3px solid cornflowerblue;
+  border-radius: 100%;
+  pointer-events: none;
+`;
 
-  &::before {
-    content: "";
-    width: 0px;
-    height: 30px;
-    border: 1px solid cornflowerblue;
-    background-color: cornflowerblue;
-    /* border-radius: 30%; */
+const CommentContent = styled.div`
+  font-size: 16px;
+`;
+
+const BtnPosition = styled.div`
+  position: absolute;
+  right: 0;
+  display: flex;
+`;
+
+const PutBtn = styled.div`
+  margin-right: 10px;
+  cursor: pointer;
+  color: #888;
+  transition: 0.5s;
+
+  &:hover {
+    color: cornflowerblue;
+  }
+`;
+const DelBtn = styled.div`
+  cursor: pointer;
+  color: #888;
+  transition: 1s;
+
+  &:hover {
+    color: red;
   }
 `;
 

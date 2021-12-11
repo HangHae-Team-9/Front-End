@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   postView,
   users,
   comment,
+
   router: connectRouter(history),
 });
 const middleware = [thunk.withExtraArgument({ history }), logger];

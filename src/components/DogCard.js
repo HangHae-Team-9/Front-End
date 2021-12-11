@@ -6,7 +6,7 @@ import { _loadPostView } from "../modules/postView";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-export default function Card() {
+export default function DogCard() {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -15,7 +15,7 @@ export default function Card() {
   }, [dispatch]);
 
   const postList = useSelector((store) => store.postView.list);
-  console.log(postList);
+  console.log(postList.categoryname);
 
   return (
     <>
@@ -23,16 +23,16 @@ export default function Card() {
         const onC = () => {
           history.push(`/pages/post/${post.id}`);
         };
+        const category = post.categoryname;
+        console.log(category);
 
-        return (
+        return category === "강아지" ? (
           <CardBox key={key} onClick={onC}>
             <ImageWrap>
               <ImageMain src={post.img}></ImageMain>
             </ImageWrap>
             <InfoWrap>
               <InfoBox>
-                {/* <InfoText> 제목 </InfoText> */}
-
                 <InfoText>{post.title}</InfoText>
               </InfoBox>
             </InfoWrap>
@@ -44,7 +44,7 @@ export default function Card() {
               조회수 {post.view} <b></b>
             </TailInfo>
           </CardBox>
-        );
+        ) : null;
       })}
     </>
   );
@@ -65,7 +65,7 @@ const CardBox = styled.div`
     box-shadow: rgb(0 0 0 / 15%) 0px 12px 20px 0px;
   }
   position: relative;
-  top: 80px;
+  top: 150px;
   float: left;
   margin-left: 40px;
 

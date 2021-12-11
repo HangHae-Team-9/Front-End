@@ -33,18 +33,23 @@ export const _loadDetailView =
 export const _deleteDetailView =
   (id) =>
   async (dispatch, getState, { history }) => {
-    history.block("게시글을 삭제할건가요?");
-    await apis.delPost(id);
-    window.location.reload();
-    window.alert("삭제 완료");
-    history.replace("/");
+    const result = window.confirm("삭제하실거에요?");
+    if (result) {
+      await apis.delPost(id);
+      // window.location.reload();
+      window.alert("삭제 완료");
+      history.replace("/");
+    } else {
+      console.log("삭제 취소");
+    }
   };
 
 export const _editDetailView =
   (id, username, title, content, file, categoryname) =>
   async (dispatch, getState, { history }) => {
-    history.block("수정을 마치실건가요?");
+    // history.block("수정을 마치실건가요?");
     await apis.putPost(id, username, title, content, file, categoryname);
+    history.replace("/");
   };
 // reducer
 export default handleActions(

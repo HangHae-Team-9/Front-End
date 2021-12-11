@@ -20,8 +20,8 @@ const SignUp = (props) => {
   const [pw, setPw] = useState("");
   const [pw_chk, setPw_chk] = useState("");
   const [email, setEmail] = useState("");
-  const [checkUsername, setCheckUsername] = useState("");
-  const [checkEmail, setCheckEmail] = useState("");
+  const [checkUsername, setCheckUsername] = useState(false);
+  const [checkEmail, setCheckEmail] = useState(false);
 
   const changeUsername = (e) => {
     setUsername(e.target.value);
@@ -34,6 +34,7 @@ const SignUp = (props) => {
   const changePw = (e) => {
     setPw(e.target.value);
   };
+
   function changePw_chk(e) {
     setPw_chk(e.target.value);
   }
@@ -49,11 +50,14 @@ const SignUp = (props) => {
         .checkUsername(username)
         .then((response) => {
           window.alert(response.data);
+          setCheckUsername(true);
         })
         .catch((error) => {
           window.alert(error.data);
+          setCheckUsername(false);
         });
     }
+    console.log(checkUsername);
   };
 
   const onClickEmailCheck = () => {
@@ -67,16 +71,29 @@ const SignUp = (props) => {
         .checkUsername(username)
         .then((response) => {
           window.alert(response.data);
+          setCheckEmail(true);
         })
         .catch((error) => {
           window.alert(error.data);
+          setCheckEmail(false);
         });
     }
+    console.log(checkEmail);
   };
 
   function register() {
     if (username === "" || pw === "" || pw_chk === "" || email === "") {
       window.alert("빈 칸이 없도록 모두 입력해주세요");
+      return;
+    }
+
+    if (!checkUsername || !checkEmail) {
+      window.alert("아이디 및 이메일 중복확인이 필요합니다.");
+      return;
+    }
+
+    if (pw.includes(username)) {
+      window.alert("비밀번호에 아이디와 같은 값을 포함할 수 없습니다.");
       return;
     }
 
@@ -91,6 +108,11 @@ const SignUp = (props) => {
     }
     if (!passwordCheck(pw)) {
       window.alert("비밀번호는 4자이상의 비밀번호여야 합니다.");
+      return;
+    }
+
+    if (pw.includes(username)) {
+      window.alert("비밀번호에 아이디와 같은 값을 포함할 수 없습니다.");
       return;
     }
 
@@ -120,7 +142,7 @@ const SignUp = (props) => {
       <Container>
         <Input
           width="70%"
-          placeholder="닉네임을 입력해주세요"
+          placeholder="이메일을 입력해주세요"
           margin="10px 0px"
           _onChange={changeEmail}
         />

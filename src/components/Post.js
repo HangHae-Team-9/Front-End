@@ -37,7 +37,6 @@ const Posting = (props) => {
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
-  console.log(selectedFile);
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -54,15 +53,25 @@ const Posting = (props) => {
     e.preventDefault();
 
     const file = new FormData();
+    console.log(username, title, content, file, categoryname);
 
     file.append("file", selectedFile);
 
-    apiMultiPart.addImg(file).then((res) => {
-      const file = res.data;
-      dispatch(
-        postActions.addPostDB(username, title, content, file, categoryname)
-      );
-    });
+    await axios({
+      method: "post",
+      url: "http://15.165.160.58/api/v1/upload",
+      data: file,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      // await apiMultiPart.addImg(file)
+      .then((res) => {
+        const file = res.data;
+        dispatch(
+          postActions.addPostDB(username, title, content, file, categoryname)
+        );
+      });
   };
 
   return (
@@ -103,12 +112,7 @@ const Posting = (props) => {
             여기에다 용품 자랑을 해보세요
           </Text>
         </BlogPostText>
-        <Textarea
-          width="50%"
-          height="300px"
-          _onChange={changeContent}
-          margin="0px 0px 20px 139px"
-        />
+        <Textarea width="100%" height="300px" _onChange={changeContent} />
         <BlogPostCta>
           {/* <Link to="/"> */}
           <Btn fs="17px" margin="5px" width="130px" _onClick={addPosting}>
@@ -128,7 +132,6 @@ const Posting = (props) => {
 
 const CardWrap = styled.div`
   width: 35rem;
-  padding: 0px 0px 0px 5px;
   background: #fff;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 16px 0px;

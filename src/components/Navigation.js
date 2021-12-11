@@ -19,9 +19,6 @@ export default function Navigation() {
   console.log(document.cookie);
 
   const isLogin = useSelector((store) => store.users.is_login);
-  console.log(isLogin);
-  // const username = useSelector((store) => store.users.user);
-  // console.log(username);
 
   const signOut = () => {
     console.log("logout");
@@ -32,31 +29,108 @@ export default function Navigation() {
     window.alert("로그인하세요~");
   };
 
+  const dogSelector = useSelector((state) => state.postView.list);
+  console.log(dogSelector);
+
   if (isLogin) {
     return (
       <NavBar>
+        <NavWrap>
+          <Header>
+            <Welcome>
+              {localStorage.getItem("username")} 님 좋은 하루 되세요.
+            </Welcome>
+            <Link to="/" style={{ display: "flex" }}>
+              <img
+                src="https://svgsilh.com/svg/1517090.svg"
+                alt="logoImg"
+                style={{ width: "100px" }}
+              />
+              <NavTitle>개팔자가 상팔자</NavTitle>
+            </Link>
+            <LinkWrap>
+              <HyperLink>MyPage</HyperLink>
+              <HyperLink onClick={signOut}>SignOut</HyperLink>
+            </LinkWrap>
+            <MainNav>
+              <NavLink
+                to="/"
+                exact
+                activeStyle={{
+                  color: "#000",
+                  fontWeight: "900",
+                }}
+              >
+                <Go>메인페이지</Go>
+              </NavLink>
+              <NavLink
+                to="/pages/dog"
+                activeStyle={{ color: "#000", fontWeight: "900" }}
+              >
+                <Go>강아지</Go>
+              </NavLink>
+              <NavLink
+                to="/pages/cat"
+                activeStyle={{ color: "#000", fontWeight: "900" }}
+              >
+                <Go>고양이</Go>
+              </NavLink>
+              <NavLink
+                to="/pages/Posting"
+                activeStyle={{ color: "#000", fontWeight: "900" }}
+              >
+                <Go>Go Posting</Go>
+              </NavLink>
+            </MainNav>
+          </Header>
+        </NavWrap>
+      </NavBar>
+    );
+  }
+
+  return (
+    <NavBar>
+      <NavWrap>
         <Header>
-          <Welcome>
-            {localStorage.getItem("username")} 님 좋은 하루 되세요.
-          </Welcome>
           <Link to="/" style={{ display: "flex" }}>
-            <img
-              src="https://svgsilh.com/svg/1517090.svg"
-              alt="logoImg"
-              style={{ width: "100px" }}
-            />
-            <NavTitle>개팔자가 상팔자</NavTitle>
+            <LogoArea>
+              <img
+                src="https://svgsilh.com/svg/1517090.svg"
+                alt="logoImg"
+                style={{ width: "100px" }}
+              />
+              <NavTitle>개팔자가 상팔자</NavTitle>
+            </LogoArea>
           </Link>
           <LinkWrap>
-            <HyperLink>MyPage</HyperLink>
-            <HyperLink onClick={signOut}>SignOut</HyperLink>
+            <NavLink
+              to="/pages/LogIn"
+              activeStyle={{
+                color: "#111",
+                borderBottom: "1px solid #111",
+                borderRadius: "100%",
+              }}
+            >
+              <HyperLink>로그인</HyperLink>
+            </NavLink>
+            <NavLink
+              to="/pages/SignUp"
+              activeStyle={{
+                color: "#111",
+                borderBottom: "1px solid #111",
+                borderRadius: "100%",
+              }}
+            >
+              <HyperLink>회원가입</HyperLink>
+            </NavLink>
           </LinkWrap>
           <MainNav>
             <NavLink
               to="/"
               exact
               activeStyle={{
-                color: "#000",
+                background: "#111",
+                color: "#fff",
                 fontWeight: "900",
               }}
             >
@@ -64,77 +138,38 @@ export default function Navigation() {
             </NavLink>
             <NavLink
               to="/pages/dog"
-              activeStyle={{ color: "#000", fontWeight: "900" }}
+              activeStyle={{
+                backgroundColor: "#fff",
+                color: "#000",
+                fontWeight: "900",
+                borderBottom: "1px solid #111",
+                borderRadius: "100%",
+              }}
             >
               <Go>강아지</Go>
             </NavLink>
             <NavLink
               to="/pages/cat"
-              activeStyle={{ color: "#000", fontWeight: "900" }}
+              activeStyle={{
+                color: "#000",
+                fontWeight: "900",
+                borderBottom: "1px solid #111",
+                borderRadius: "100%",
+              }}
             >
               <Go>고양이</Go>
             </NavLink>
-            <NavLink
-              to="/pages/Posting"
-              activeStyle={{ color: "#000", fontWeight: "900" }}
-            >
-              <Go>Go Posting</Go>
-            </NavLink>
+
+            <Go onClick={notLogin}>Go Posting</Go>
           </MainNav>
         </Header>
-      </NavBar>
-    );
-  }
-
-  return (
-    <NavBar>
-      <Header>
-        <Link to="/" style={{ display: "flex" }}>
-          <img
-            src="https://svgsilh.com/svg/1517090.svg"
-            alt="logoImg"
-            style={{ width: "100px" }}
-          />
-          <NavTitle>개팔자가 상팔자</NavTitle>
-        </Link>
-        <LinkWrap>
-          <NavLink to="/pages/LogIn" activeStyle={{ color: "#111" }}>
-            <HyperLink>로그인</HyperLink>
-          </NavLink>
-          <NavLink to="/pages/SignUp" activeStyle={{ color: "#111" }}>
-            <HyperLink>회원가입</HyperLink>
-          </NavLink>
-        </LinkWrap>
-        <MainNav>
-          <NavLink
-            to="/"
-            exact
-            activeStyle={{ color: "#000", fontWeight: "900" }}
-          >
-            <Go>메인페이지</Go>
-          </NavLink>
-          <NavLink
-            to="/pages/dog"
-            activeStyle={{ color: "#000", fontWeight: "900" }}
-          >
-            <Go>강아지</Go>
-          </NavLink>
-          <NavLink
-            to="/pages/cat"
-            activeStyle={{ color: "#000", fontWeight: "900" }}
-          >
-            <Go>고양이</Go>
-          </NavLink>
-
-          <Go onClick={notLogin}>Go Posting</Go>
-        </MainNav>
-      </Header>
+      </NavWrap>
     </NavBar>
   );
 }
 
 const NavBar = styled.div`
-  width: 80%;
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -142,15 +177,18 @@ const NavBar = styled.div`
   margin: auto;
   /* width: 1130px; */
   height: 100px;
-  background-color: white;
   opacity: 0.8;
   z-index: 999;
+  background-color: #fff;
+`;
+
+const NavWrap = styled.div`
+  margin: auto;
 `;
 
 const Header = styled.div`
   /* width: 1130px; */
   /* min-width: 500px; */
-  background-color: white;
   /* margin: auto; */
   height: 100%;
   display: flex;
@@ -158,12 +196,21 @@ const Header = styled.div`
   position: relative;
 `;
 
+const LogoArea = styled.div`
+  display: flex;
+  color: #000;
+`;
+
 const NavTitle = styled.div`
   font-size: 50px;
   line-height: 2;
   font-family: "Dokdo", cursive;
   margin: 0px auto;
-  color: #111;
+  transition: 1s;
+
+  &:hover {
+    color: cornflowerblue;
+  }
 `;
 
 const Welcome = styled.div`
@@ -179,14 +226,14 @@ const Welcome = styled.div`
 const LinkWrap = styled.div`
   position: absolute;
   top: 10px;
-  right: 20px;
-  height: 30px;
+  right: 10px;
+  /* height: 30px; */
   display: flex;
   color: #999;
 `;
 
 const HyperLink = styled.div`
-  margin: 20px;
+  margin: 15px;
   position: reletive;
   cursor: pointer;
   transition: transform 0.5s, color 1s;
@@ -199,21 +246,20 @@ const HyperLink = styled.div`
 
 const MainNav = styled.div`
   position: fixed;
-  top: 60px;
-  right: 60px;
-  color: #fff;
+  top: 45px;
+  right: 30px;
 `;
 
 const Go = styled.div`
   width: 100px;
   height: 30px;
-  background-color: #999;
-  border-radius: 10px;
   margin: 10px auto;
   line-height: 2;
   text-align: center;
   cursor: pointer;
   transition: 0.7s, font-size 0.5s;
+  color: #777;
+  border-radius: 10px;
 
   &:hover {
     transform: scale(1.2);

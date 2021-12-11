@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { apis, apiMultiPart } from "../shared/api";
 import { _editDetailView } from "../modules/detailView";
+import axios from "axios";
 
 const Posting = (props) => {
   const dispatch = useDispatch();
@@ -61,12 +62,21 @@ const Posting = (props) => {
 
     file.append("file", selectedFile);
 
-    apiMultiPart.addImg(file).then((res) => {
-      const file = res.data;
-      dispatch(
-        _editDetailView(id, username, title, content, file, categoryname)
-      );
-    });
+    await axios({
+      method: "post",
+      url: "http://15.165.160.58/api/v1/upload",
+      data: file,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      // apiMultiPart.addImg(file)
+      .then((res) => {
+        const file = res.data;
+        dispatch(
+          _editDetailView(id, username, title, content, file, categoryname)
+        );
+      });
   };
 
   return (
@@ -82,7 +92,7 @@ const Posting = (props) => {
               _onChange={handleFileChange}
               style={{ margin: "15px 0" }}
             />
-            <div className="preview">
+            <Preview>
               {imageSrc && (
                 <img
                   width="70%"
@@ -91,7 +101,7 @@ const Posting = (props) => {
                   alt="preview-img"
                 />
               )}
-            </div>
+            </Preview>
           </BlogPostImg>
         </BlogPost>
         <BlogPostInfo>
@@ -107,7 +117,6 @@ const Posting = (props) => {
             width="50%"
             placeholder="제목을 작성해주세요."
             _onChange={changeTitle}
-            _value={bfTitle}
           />
         </BlogPostInput>
         <BlogPostText>
@@ -120,7 +129,6 @@ const Posting = (props) => {
           height="300px"
           _onChange={changeContent}
           margin="0px 0px 20px 139px"
-          _value={bfContent}
         />
         <BlogPostCta>
           {/* <Link to="/"> */}
@@ -212,6 +220,10 @@ const BlogPostCta = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Preview = styled.div`
+  object-fit: none;
 `;
 
 export default Posting;

@@ -18,7 +18,6 @@ export const _loadPostView =
   () =>
   async (dispatch, getState, { history }) => {
     const { data } = await apis.getPostCard();
-    console.log(data);
     dispatch(loadPostView(data));
   };
 

@@ -1,7 +1,9 @@
-export default function CategoryDog() {
+import DogCard from "../components/DogCard";
+
+export default function CategoryDog(props) {
   return (
     <>
-      <div></div>
+      <DogCard />
     </>
   );
 }

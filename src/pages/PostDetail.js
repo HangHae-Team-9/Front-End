@@ -6,6 +6,7 @@ import { _loadDetailView } from "../modules/detailView";
 import { useDispatch, useSelector } from "react-redux";
 import DetailView from "../components/DetailView";
 import styled from "styled-components";
+import LikePost from "../components/LikePost";
 
 const PostDetail = (props) => {
   const id = props.match.params.id;
@@ -21,6 +22,7 @@ const PostDetail = (props) => {
   return (
     <Wrap>
       <DetailView detailView={data} id={id} />
+      <LikePost />
       <Test>
         <CommentWrite id={id} />
         <CommentList comments={comments} />

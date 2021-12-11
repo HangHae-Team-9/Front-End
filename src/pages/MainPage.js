@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Card from "../components/Card";
 import React from "react";
+import Footer from "../components/Footer";
 
 export default function MainPage() {
   return (

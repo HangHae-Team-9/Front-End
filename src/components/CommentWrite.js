@@ -23,6 +23,9 @@ const CommentWrite = (props) => {
       window.alert("로그인 후 이용해 주시기 바랍니다");
       return;
     }
+    if (commentcontent === "") {
+      return window.alert("남길 말을 적어주세요");
+    }
     dispatch(addCommentDB(id, username, commentcontent));
   };
 
@@ -31,22 +34,13 @@ const CommentWrite = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Text margin="10px 0px" size="20px">
-          {" "}
-          댓글{" "}
-        </Text>
-        <Input
+        <InputArea
           placeholder={
             isLogin ? "댓글을 입력해주세요." : "로그인 후 이용해주세요."
           }
-          _onChange={changeCommentcontent}
-        >
-          {" "}
-        </Input>
-        <Btn margin="10px 0px" fs="15px" _onClick={addComment}>
-          {" "}
-          작성하기{" "}
-        </Btn>
+          onChange={changeCommentcontent}
+        />
+        <BtnArea onClick={addComment}>작성</BtnArea>
       </Container>
     </React.Fragment>
   );
@@ -54,6 +48,40 @@ const CommentWrite = (props) => {
 
 const Container = styled.div`
   margin: 20px;
+  display: flex;
+`;
+
+const InputArea = styled.input`
+  width: 90%;
+  height: 50px;
+  outline: none;
+  transform: border 0.5s;
+
+  &:focus {
+    border: 1px solid green;
+  }
+
+  &::placeholder {
+    padding: 20px;
+    color: #000;
+    font-weight: bold;
+  }
+`;
+
+const BtnArea = styled.div`
+  width: 10%;
+  height: 50px;
+  background-color: cornflowerblue;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 3.2;
+  color: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+
+  &:hover {
+    color: #000;
+  }
 `;
 
 export default CommentWrite;

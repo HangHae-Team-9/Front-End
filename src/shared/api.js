@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://13.125.197.66",
+  baseURL: "http://15.165.160.58",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
@@ -9,9 +9,10 @@ const api = axios.create({
 });
 
 const apiMultipart = axios.create({
-  baseURL: "http://13.125.197.66",
+  baseURL: "http://15.165.160.58",
   headers: {
-    "content-type": "multipart/form-data",
+    "content-type":
+      "multipart/form-data; boundary=----WebKitFormBoundaryfApYSlK1ODwmeKW3",
   },
 });
 
@@ -52,12 +53,12 @@ export const apis = {
   login: (username, password) =>
     api.post("/api/user/login", { username: username, password: password }),
 
+  kakao: (username) => api.post("/user/kakao/callback", { username }),
+
   // 이미지 업로드
 
   // 포스트 삭제
-  delPost: (id) => {
-    api.delete(`/api/posting/${id}`);
-  },
+  delPost: (id) => api.delete(`/api/posting/${id}`),
   // 포스트 수정
   putPost: (id, username, title, content, file, categoryname) =>
     api.put(`/api/posting/${id}`, {
@@ -73,13 +74,15 @@ export const apis = {
   // 상세페이지 뷰
   getDetailCard: (id) => api.get(`/api/user/posting/${id}`),
 
+  //강아지 고양이 페이지 뷰
+  getAnycard: (categoryId) => api.get(`/api/category/${categoryId}`),
+
   //댓글//
-  addComment: (id, username, commentcontent) => {
+  addComment: (id, username, commentcontent) =>
     api.post(`/api/posting/${id}/comment`, {
       username: username,
       commentcontent: commentcontent,
-    });
-  },
+    }),
   comments: (id) => api.get(`/api/articles/${id}/comments`),
   delComment: (id, coId) => api.delete(`/api/articles/${id}/comments/${coId}`),
   editComment: (id, coId, content) =>
@@ -101,12 +104,8 @@ export const apis = {
     }),
   //이메일 중복확인//
   checkEmail: (email) => api.post("/api/user/checkemail", email),
-  userInfo: () => api.get(`/myinfo`),
-  userPassword: (pw) => api.post(`/myinfo`, pw),
-  userNewPassword: (pw) => api.put(`/myinfo`, pw),
-  edit: (id, contents) => api.put(`api/articles/${id}`, contents),
-  del: (id) => api.delete(`api/articles/${id}`),
-  articles: () => api.get("/api/articles"),
-  article: (id) => api.get(`/api/articles/${id}`),
-  search: (value) => api.get(`/api/articles/search?query=${value}`),
+
+  //좋아요 기능//
+  likePost: (username, boardid) =>
+    api.post(`/api/board/like/${boardid}`, username),
 };

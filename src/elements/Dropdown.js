@@ -39,12 +39,14 @@ const Dt = styled.div`
   font-weight: bold;
   background-color: white;
   padding: 0px;
+  text-align: center;
 `;
 const Dd = styled.div`
   margin: 0;
   line-height: 1.5em;
   color: #333;
   cursor: pointer;
+  text-align: center;
 
   &:hover {
     color: black;

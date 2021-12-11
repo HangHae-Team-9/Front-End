@@ -19,10 +19,17 @@ import { apis } from "../shared/api";
 
 const addPostDB = (username, title, content, file, categoryname) => {
   return function (dispatch, getState, { history }) {
-    apis.addPost(username, title, content, file, categoryname).then((res) => {
-      window.alert(res.data);
-      history.replace("/");
-    });
+    apis
+      .addPost(username, title, content, file, categoryname)
+      .then((res) => {
+        if (res.data === "게시글 작성이 완료되었습니다.") {
+          window.alert(res.data);
+          history.replace("/");
+        } else {
+          window.alert(res.data);
+        }
+      })
+      .catch((e) => window.alert(e));
   };
 };
 

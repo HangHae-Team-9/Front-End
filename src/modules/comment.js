@@ -37,7 +37,7 @@ const initialState = {
 export const addCommentDB = (id, username, commentcontent) => {
   return async (dispatch, getState, { history }) => {
     await apis.addComment(id, username, commentcontent);
-    // window.location.reload();
+    window.location.reload();
     window.alert("작성 성공");
   };
 };

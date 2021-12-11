@@ -5,9 +5,12 @@ import Input from "../elements/Input";
 import Text from "../elements/Text";
 import { userCreators } from "../modules/users";
 import { useDispatch } from "react-redux";
+import { KAKAO_AUTH_URL, REDIRECT_URI, CLIENT_ID } from "../shared/kakaoAuth";
+import { useHistory } from "react-router";
 
 const LogIn = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +25,10 @@ const LogIn = (props) => {
 
   const login = () => {
     dispatch(userCreators.setLoginDB(username, password));
+  };
+
+  const move = () => {
+    window.location = `${REDIRECT_URI}`;
   };
 
   return (
@@ -49,6 +56,16 @@ const LogIn = (props) => {
         <Btn margin="auto" _onClick={login}>
           로그인
         </Btn>
+        <div>
+          <div
+            onClick={move}
+            style={{
+              margin: "0px 10px",
+            }}
+          >
+            카카오로 로그인
+          </div>
+        </div>
       </Test>
     </>
   );
