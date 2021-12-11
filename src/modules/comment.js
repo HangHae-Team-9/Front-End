@@ -38,7 +38,8 @@ const initialState = {
 export const addCommentDB = (id, username, commentcontent) => {
   return (dispatch, getState, { history }) => {
     apis.addComment(id, username, commentcontent).then((res) => {
-      window.location.reload();
+      history.replace(`/`);
+      history.replace(`/pages/post/${id}`);
     });
   };
 };
