@@ -57,6 +57,7 @@
 
 ## 🎞 프로젝트 시연 영상 🎞
 
+![Hnet-image](https://user-images.githubusercontent.com/92702096/145673393-0f6c5102-62c3-4946-b6f0-3bd9ed739bd4.gif)
 <br/>
 
 [시연영상 바로가기](http://ohyo.shop.s3-website.ap-northeast-2.amazonaws.com)
